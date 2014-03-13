@@ -1,4 +1,4 @@
-package AP2014.imageEncode;
+package AP2014.imageencode;
 
 import java.io.FileInputStream;
 import java.io.IOException;

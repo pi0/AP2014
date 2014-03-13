@@ -1,4 +1,4 @@
-package AP2014.addInt;
+package AP2014.addint;
 
 import java.io.InputStream;
 
@@ -52,7 +52,6 @@ class MyInt {
     public static MyInt fromString (String num) {
         MyInt myInt=new MyInt();
         myInt.digits_count=num.length();
-        //TODO : negative number sign....
 
         for(int i=0;i<myInt.digits_count;i++)
             myInt.digits[myInt.digits_count-i-1]=
