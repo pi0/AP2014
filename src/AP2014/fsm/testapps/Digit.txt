@@ -1,0 +1,7 @@
+6,3	\n	\.	[0-9]
+init	-	dot	digit
+dot	integer	-	floatingDigit
+digit	integer	dot	digit
+floatingDigit	float	-	floatingDigit
+float	-	-	-
+integer	-	-	-

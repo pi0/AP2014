@@ -12,7 +12,7 @@ public class Game {
 
         this.level=level;
 
-        gameWindow=new JFrame("CandyCrush!");
+        gameWindow=new JFrame("Candy Crush !");
         gameWindow.setSize(547,567);
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

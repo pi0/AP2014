@@ -10,7 +10,6 @@ public class ExamCheckerApp {
         }catch (Exception e) {
             System.err.print("Error: "+e.getMessage());
         }
-
     }
 
     void Run(String baseDir) throws Exception{
