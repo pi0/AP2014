@@ -1,1 +1,2 @@
-create table boo ( a int , b string 10 , c float )
+create table boo ( name string , family string , score float , age int )
+insert into boo values ( pooya , parsa , 20.0 , 20 )

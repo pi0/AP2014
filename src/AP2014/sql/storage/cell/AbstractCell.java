@@ -20,6 +20,10 @@ public abstract class AbstractCell{
         return paramName;
     }
 
+    public CellType getType() {
+        return type;
+    }
+
     public static CellType getCellType(String t) {
         if(t.equals("string"))
             return CellType.CELL_TYPE_STRING;
@@ -38,6 +42,14 @@ public abstract class AbstractCell{
         if(type==CellType.CELL_TYPE_STRING)
             return "string";
         else return "?";
+    }
+
+    public static CellType detectValueType(String value) {
+        if(value.matches("\\d*\\.\\d*"))
+            return CellType.CELL_TYPE_FLOAT;
+        else if (value.matches("\\d+"))
+            return CellType.CELL_TYPE_INT;
+        else return CellType.CELL_TYPE_STRING;
     }
 
     @Override

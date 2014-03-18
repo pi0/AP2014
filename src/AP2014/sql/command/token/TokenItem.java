@@ -10,7 +10,7 @@ enum TokenItemType {
 public class TokenItem {
 
     static final String keywordRegex="[^'\"\\s]\\S+";
-    static final String valueRegex="'.*?'|\".*?\"|\\w+";
+    static final String valueRegex="'.*?'|\".*?\"|[\\w\\.]+";
     static final String symbolRegex="[=();,]";
     static final String[] validKeywords={
             "create","table","drop","insert","into",
@@ -58,6 +58,6 @@ public class TokenItem {
             case TOKEN_ITEM_TYPE_SYMBOL:typeStr="symbol";break;
             case TOKEN_ITEM_TYPE_VALUE:typeStr="value";break;
         }
-        return typeStr+"('"+getText()+"')";
+        return typeStr+" '"+getText()+"' ";
     }
 }

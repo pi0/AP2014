@@ -93,8 +93,9 @@ public class TokenList {
                             TokenItemType.TOKEN_ITEM_TYPE_KEYWORD) {
                         if(log)resource.logError("keyword expected but found " + current);
                         return false;
-                    } else if (!current.getText().matches(args[args_pos++])) {
+                    } else if (!current.getText().equals(args[args_pos++])) {
                         if(log)resource.logError("unexpected " + current + " (keyword " + c + "was expected");
+                        return false;
                     }
                     break;
                 case 'v':

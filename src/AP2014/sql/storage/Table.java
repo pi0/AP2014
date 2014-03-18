@@ -1,5 +1,6 @@
 package AP2014.sql.storage;
 
+import AP2014.sql.storage.cell.DataCell;
 import AP2014.sql.storage.cell.MetaCell;
 import com.bethecoder.ascii_table.ASCIITable;
 
@@ -9,7 +10,7 @@ import java.util.Vector;
 public class Table {
 
     private String name;
-    private Vector<MetaCell> params;
+    private final Vector<MetaCell> params;
     private Vector<Record> records;
 
     public Table(String name, Vector<MetaCell> params) {
@@ -25,12 +26,25 @@ public class Table {
         return null;
     }
 
+    public Vector<MetaCell> getParams() {
+        return params;
+    }
+
+    public Record getRecord() {
+        Vector<DataCell> cells;
+        cells=new Vector<DataCell>(params.size());
+        for(MetaCell mcell:params)
+            cells.add(mcell.createCell());
+        return new Record(cells);
+    }
+
+
     public String getName() {
         return name;
     }
 
-    public void dump(PrintStream stream) {
-        stream.print(toString());
+    public void addRecord(Record record) {
+        records.add(record);
     }
 
     @Override

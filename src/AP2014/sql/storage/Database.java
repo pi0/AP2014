@@ -15,5 +15,12 @@ public class Database {
         tables.add(table);
     }
 
+    public Table getTable(String name) {
+        for(Table table:tables)
+            if(table.getName().equals(name))
+                return table;
+        return null;
+    }
+
 
 }

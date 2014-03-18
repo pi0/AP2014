@@ -18,10 +18,13 @@ public class SQL {
               !(name.matches("\\d{3,}")));//TODO : why doesn't works ?!
     }
 
-    public Resource exec(String query) {
+    public Database getDb() {
+        return db;
+    }
+
+    public Resource query(String query) {
         Resource r=new Resource();
-        Command m=new Command(query,db,r);
-        m.exec();
+        Command.query(query,db,r);
         return r;
     }
 

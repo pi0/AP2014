@@ -9,6 +9,11 @@ public class Record{
 
     private Vector<DataCell> cells;
 
+    public Record(Vector<DataCell> cells) {
+        this.cells=cells;
+    }
+
+
     public DataCell getCell(MetaCell param) {
         for(DataCell cell:cells)
             if(cell.equals(param))

@@ -5,9 +5,11 @@ import AP2014.sql.command.condition.*;
 import AP2014.sql.command.token.TokenList;
 import AP2014.sql.storage.Database;
 import AP2014.sql.Resource;
+import AP2014.sql.storage.Record;
 import AP2014.sql.storage.Table;
 import AP2014.sql.storage.cell.AbstractCell;
 import AP2014.sql.storage.cell.CellType;
+import AP2014.sql.storage.cell.DataCell;
 import AP2014.sql.storage.cell.MetaCell;
 import javafx.util.Pair;
 
@@ -91,7 +93,9 @@ public class Command {
 
         while(!list.isEndOfList()) {
 
-            if(!list.checkSequence("vk","int|string|float")) {
+            if(!(list.checkSequence("vk","int")||
+                    list.checkSequence("vk","float")||
+                            list.checkSequence("vk","string"))) {//TODO : use regex :D
                 if(list.checkSequence(")")) {
                     list.next();
                     break;
@@ -147,8 +151,7 @@ public class Command {
         table=new Table(tableName,params);
         db.addTable(table);
 
-        resource.logInfo("table '"+tableName+"'"+" successfully created\n"+
-                        table.toString());
+        resource.logInfo("table '"+tableName+"'"+" successfully created");
     }
 
     private void insertInto() {
@@ -176,7 +179,47 @@ public class Command {
                 return;
             }
         }
-        //TODO
+
+        //validate and get params
+        Vector<MetaCell> mParams;
+        if(params!=null) {
+            mParams=new Vector<MetaCell>(params.size());
+            for(String param:params) {
+                MetaCell m=table.getParam(param);
+                if(m==null){
+                    resource.logError("Invalid parameter '"+param+"'");
+                    return;
+                }
+                mParams.add(m);
+            }
+        } else {
+            //Default set all params
+            mParams=table.getParams();
+        }
+
+        //validate values - but be nice :D
+        if(values==null)
+            values=new Vector<String>();
+        if(mParams.size()!=values.size()) {
+            resource.logWarning("Invalid number of values! feeling by null");
+        }
+
+        //Create a record
+        Record r=table.getRecord();
+        for(int i=0;i<mParams.size() && i<values.size();i++) {
+            DataCell c=r.getCell(mParams.get(i));
+            String val=values.get(i);
+            if(AbstractCell.detectValueType(val)!=c.getType()) {
+                resource.logError("Incompatible type for "+mParams.get(i));
+                return;
+            }
+            c.setValue(val);
+        }
+
+        //Add it to table
+        table.addRecord(r);
+
+        resource.logInfo("new record added to '"+table.getName()+"'");
     }
 
     private void updateFrom() {
@@ -315,16 +358,15 @@ public class Command {
     }
 
     private Table getTable(boolean shouldExist) {
-        /*
         if (list.checkSequenceAndLog("v")) {
-            Table table=db.getTable(list.getCurrentToken().getText());
+            Table table=db.getTable
+                    (list.getCurrentToken().getText());
             if(shouldExist == (table!=null))
                 return table;
             else
                 resource.logError("table '"+list.getCurrentToken().getText()+"' "+
                         (shouldExist?"not found":"already exists"));
         }
-        */
         return null;
     }
 
@@ -339,6 +381,10 @@ public class Command {
                 terminate=false;
             else if(list.checkSequence("v)"))
                 terminate=true;
+            else if(list.checkSequence(")")){
+                list.next();
+                return params;
+            }
             else
                 return null;
             params.add(list.getCurrentToken().getText());
@@ -346,7 +392,7 @@ public class Command {
             if(terminate)
                 return params;
         }
-        return null;
+        return params;
     }
 
 

@@ -8,17 +8,30 @@ public class DataCell extends  AbstractCell{
     }
 
     public boolean equals(MetaCell metaCell){
-        return (this.type==metaCell.type);
+        return (this.type==metaCell.type &&
+                this.getName().equals(metaCell.getName()));
     }
 
-    public boolean equals(DataCell cell){
-        return (this.type==cell.type &&
-                this.value.equals(cell));
+
+    public void setValue(String value) {
+        try{
+        switch (type) {
+                case CELL_TYPE_FLOAT:
+                    this.value=Float.parseFloat(value);break;
+                case CELL_TYPE_INT:
+                    this.value=Integer.parseInt(value);break;
+                case CELL_TYPE_STRING:
+                    this.value=value;break;
+            }
+        } catch (Exception e) {
+            System.err.print("fatal error ! unable to set value ...");
+        }
     }
 
     public int compareTo(DataCell cell) {
         if(type!=cell.type)
             return 0;
+        try{
         switch (type){
             case CELL_TYPE_FLOAT:
                 return ((Float)value).compareTo((Float)cell.value);
@@ -26,12 +39,16 @@ public class DataCell extends  AbstractCell{
                 return ((Integer)value).compareTo((Integer)cell.value);
             default:
                 return value.toString().compareTo(cell.value.toString());
+        }} catch (Exception e){
+            return 0;
         }
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        if(value!=null)
+            return value.toString();
+        else return "NULL";
     }
 
 
