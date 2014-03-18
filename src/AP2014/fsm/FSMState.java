@@ -14,7 +14,7 @@ public class FSMState {
         this.id = id;
         if(name.startsWith("*")) {
             isFinalState=true;
-            name=name.substring(1);
+            this.name=name.substring(1);
         }
     }
 

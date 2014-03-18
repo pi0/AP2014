@@ -17,14 +17,15 @@ public class Answer {
         String[] segmentsStr = text.split("\\b\\b+");
         segments = new AnswerSegment[segmentsStr.length];
         for (int i = 0; i < segments.length; i++)
-            segments[i] = new AnswerSegment(segmentsStr[i]);
+            segments[i] = new AnswerSegment(segmentsStr[i].toLowerCase());
     }
 
     public void check(Answer ref) {
-        //TODO
-        //TODO : check for different lengths!!
         for (int i = 0; i < segments.length; i++)
-            segments[i].check(ref.segments[i]);
+            if(i<ref.segments.length)
+                segments[i].check(ref.segments[i]);
+        else
+            segments[i].check(null);
 
         //give score
         int total=segments.length;
@@ -85,13 +86,16 @@ class AnswerSegment {
 
     void check(AnswerSegment ref) {
         refText = ref.text;
-        isCorrect = (text.equals(refText));
+        if(ref!=null)
+            isCorrect = (text.equals(refText));
+        else
+            isCorrect=false;
     }
 
     @Override
     public String toString() {
         if(isCorrect)
-            return "T";
+            return "";//"T";
         else
             return ("F" + "(" + refText + "-" + text+")");
     }
