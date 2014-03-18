@@ -1,5 +1,7 @@
 package AP2014.sql;
 
+import java.io.PrintStream;
+
 public class Resource {
 
     private StringBuffer logHolder;
@@ -8,12 +10,25 @@ public class Resource {
         logHolder=new StringBuffer();
     }
 
+    public void log(String message,String tag) {
+        logHolder.append("["+tag+"]\t"+message+"\n");
+    }
+
     public void logError(String message) {
-        logHolder.append("[ERR] "+message+"\n");
+        log(message,"ERR");
     }
 
     public void logWarning(String message) {
-        logHolder.append("[WARN] "+message+"\n");
+        log(message, "WARN");
+    }
+
+    public void logInfo(String message) {
+        log(message, "INFO");
+    }
+
+
+    public void dump(PrintStream stream) {
+        stream.print(logHolder);
     }
 
 

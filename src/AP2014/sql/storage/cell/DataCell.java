@@ -2,8 +2,8 @@ package AP2014.sql.storage.cell;
 
 public class DataCell extends  AbstractCell{
 
-    public DataCell(String paramName,Object value,CellType type) {
-        super(paramName, value ,type);
+    public DataCell(String paramName,Object value,int maxValue,CellType type) {
+        super(paramName, value ,maxValue,type);
 
     }
 
@@ -29,7 +29,10 @@ public class DataCell extends  AbstractCell{
         }
     }
 
-
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 
 
 

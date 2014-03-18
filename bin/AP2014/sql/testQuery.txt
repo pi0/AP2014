@@ -1,0 +1,1 @@
+create table boo ( a int , b string 10 , c float )

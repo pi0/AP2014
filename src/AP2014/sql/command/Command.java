@@ -1,21 +1,23 @@
 package AP2014.sql.command;
 
+import AP2014.sql.SQL;
 import AP2014.sql.command.condition.*;
 import AP2014.sql.command.token.TokenList;
 import AP2014.sql.storage.Database;
 import AP2014.sql.Resource;
-import AP2014.sql.storage.Record;
 import AP2014.sql.storage.Table;
+import AP2014.sql.storage.cell.AbstractCell;
+import AP2014.sql.storage.cell.CellType;
 import AP2014.sql.storage.cell.MetaCell;
 import javafx.util.Pair;
 
 import java.util.Vector;
 
-class Command {
+public class Command {
 
     private Resource resource;
     private Database db;
-    private Table currentTable;//TODO : set it every where condition is!
+    private Table currentTable;
     private TokenList list;
     private String command;
 
@@ -41,6 +43,12 @@ class Command {
     }
 
     public void exec() {
+
+        if(!isValid()) {
+            resource.logError("Invalid command!");
+            return;
+        }
+
         if (list.checkSequence("kk", "create", "table")) {
             list.next(2);
             createTable();
@@ -54,50 +62,93 @@ class Command {
             list.next(2);
             deleteFrom();
         } else if (list.checkSequence("k", "select")) {
+            list.next();
             select();
         } else
             resource.logError("unknown command : "+command);
     }
 
     private void createTable() {
+
+        //Get table name
         Table table = getTable(false);
         if (table != null)
-            return;
+            return;//Table already exists
         String tableName=list.getCurrentToken().getText();
-        list.next();
-        if(!list.checkSequenceAndLog("("))
+        if(!SQL.isValidName(tableName)){
+            resource.logError("Invalid table name : '"+tableName+"'");
             return;
+        }
+        list.next();
+
+        //Get table params
+        Vector<MetaCell> params=new Vector<MetaCell>();
+        if(!list.checkSequenceAndLog("(")) {
+            resource.logError("table needs parameters!");
+            return;
+        }
+        list.next();
+
         while(!list.isEndOfList()) {
-            if(list.checkSequence("vv")) {
-                String name=list.getCurrentToken().getText();
-                list.next();
-                String type=list.getCurrentToken().getText();
-                list.next();
-                int maxVal=-1;
-                if(list.checkSequence("v")) {
-                    try{
-                        maxVal=Integer.parseInt(list.getCurrentToken().getText());
-                    } catch (NumberFormatException e) {
-                        resource.logError("invalid maximum value.assuming unlimited");
-                    }
-                    list.next();
-                }
+
+            if(!list.checkSequence("vk","int|string|float")) {
                 if(list.checkSequence(")")) {
                     list.next();
                     break;
-                }
-                else if(list.checkSequence(",")) {
-                    list.next();
-                    //continue;
-                }
-                else {
-                    resource.logError("invalid table parameters");
+                } else {
+                    resource.logError("Syntax error on table parameters");
                     return;
                 }
-                //TODO
             }
+
+            //Get param name
+            String name=list.getCurrentToken().getText();
+            if(!SQL.isValidName(name)) {
+                resource.logError("invalid parameter name :'"+name+"'");
+                return;
+            }
+            list.next();
+
+            //Get param type
+            CellType type= AbstractCell.getCellType(
+                    list.getCurrentToken().getText());
+            if(type==null){
+                resource.logError("Invalid type");
+                return;
+            }
+            list.next();
+
+            //Optionally get param max value
+            int maxVal=-1;
+            if(list.checkSequence("v")) {
+                try{
+                    maxVal=Integer.parseInt(list.getCurrentToken().getText());
+                } catch (NumberFormatException e) {
+                    resource.logError("invalid maximum value");
+                    return;
+                }
+                list.next();
+            }
+
+            if(list.checkSequence(",") || list.checkSequence(")")) {
+                list.next();
+            }
+            else {
+                resource.logError("invalid table parameters");
+                return;
+            }
+
+            //Add to table params
+            params.add(new MetaCell(name,null,maxVal,type));
+
         }
-        //TODO
+
+        //Finally create table!
+        table=new Table(tableName,params);
+        db.addTable(table);
+
+        resource.logInfo("table '"+tableName+"'"+" successfully created\n"+
+                        table.toString());
     }
 
     private void insertInto() {
@@ -168,7 +219,7 @@ class Command {
 
     private void select() {
         if(list.checkSequence("*")) {
-          //TODO : use all params
+            //TODO : use all params
             list.next();
         } else {
             while (!list.isEndOfList()) {
@@ -194,7 +245,8 @@ class Command {
 
     }
 
-    private ConditionNode getCondition() {
+    private ConditionNode getCondition(Table table) {
+        currentTable=table;
         return getCondition(list);
     }
 
@@ -262,9 +314,6 @@ class Command {
 
     }
 
-
-
-
     private Table getTable(boolean shouldExist) {
         /*
         if (list.checkSequenceAndLog("v")) {
@@ -299,5 +348,7 @@ class Command {
         }
         return null;
     }
+
+
 }
 

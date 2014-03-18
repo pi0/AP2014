@@ -16,5 +16,11 @@ public class Record{
         return null;
     }
 
+    public String[] toStringArr() {
+        String[] c=new String[cells.size()];
+        for(int i=0;i<c.length;i++)
+            c[i]=cells.get(i).toString();
+        return c;
+    }
 
 }

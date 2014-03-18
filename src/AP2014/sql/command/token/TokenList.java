@@ -23,6 +23,8 @@ public class TokenList {
     public TokenList(String command, Resource resource) {
         this(resource);
 
+        command=command.toLowerCase();
+
         Pattern p = Pattern.compile(TokenItem.keywordRegex + "|" +
                 TokenItem.symbolRegex + "|" + TokenItem.valueRegex);
         Matcher m = p.matcher(command);
@@ -83,7 +85,7 @@ public class TokenList {
         int args_pos = 0;
 
         for (char c : pattern.toCharArray()) {
-            if(currentToken>tokens.size())return false;
+            if(tokenindex>=tokens.size())return false;
             TokenItem current = getToken(tokenindex++);
             switch (c) {
                 case 'k':
@@ -91,7 +93,7 @@ public class TokenList {
                             TokenItemType.TOKEN_ITEM_TYPE_KEYWORD) {
                         if(log)resource.logError("keyword expected but found " + current);
                         return false;
-                    } else if (!current.getText().equals(args[args_pos++])) {
+                    } else if (!current.getText().matches(args[args_pos++])) {
                         if(log)resource.logError("unexpected " + current + " (keyword " + c + "was expected");
                     }
                     break;
@@ -108,7 +110,7 @@ public class TokenList {
                             TokenItemType.TOKEN_ITEM_TYPE_SYMBOL) {
                         if(log)resource.logError("symbol expected but found " + current);
                         return false;
-                    } else if (!current.getText().equals(args[args_pos++])) {
+                    } else if (!current.getText().equals(String.valueOf(c))) {
                         if(log)resource.logError("unexpected " + current + " (symbol " + c + "was expected");
                     }
                     break;
