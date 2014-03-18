@@ -26,6 +26,7 @@ public class OperatorNode extends ConditionNode{
     }
 
     public boolean accepts(Record record) {
+
         for(ConditionNode node:childs) {
             boolean acc=node.accepts(record);
             if(acc){
@@ -35,7 +36,11 @@ public class OperatorNode extends ConditionNode{
                     if(operatorType==OperatorType.OPERATOR_TYPE_AND)
                         return false;
         }
-        return false;//OR and all false
+
+        if(operatorType==OperatorType.OPERATOR_TYPE_AND)
+            return true;//AND , but no false
+        else
+            return false;//OR , but all false
     }
 
 }

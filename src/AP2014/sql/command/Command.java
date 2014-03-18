@@ -233,6 +233,8 @@ public class Command {
         list.next();
 
         ConditionNode c=getCondition(table);
+        if(c==null)
+            return;
         for(Record r:c.getMatchedRecords(table))
                 table.deleteRecord(r);
     }
@@ -295,12 +297,15 @@ public class Command {
 
     private ConditionNode getCondition(Table table) {
         currentTable=table;
-        return getCondition(list);
+        ConditionNode c=getCondition(list);
+        if(c==null)
+            resource.logError("Syntax error!");
+        return c;
     }
 
     private ConditionNode getCondition(TokenList l) {
 
-        ConditionNode a=readCondition();
+        ConditionNode a=readCondition(l);
 
         if(l.isEndOfList())
             return a;
@@ -315,54 +320,66 @@ public class Command {
                 resource.logError("Invalid operator");
                 return null;
             }
-            OperatorNode on=new OperatorNode(ot);
-            on.addChild(a);
+
+            OperatorNode c=new OperatorNode(ot);
+            c.addChild(a);
             l.next();
-            on.addChild(getCondition(l));
-            return on;
+            ConditionNode b=getCondition(l);
+            if(b==null)
+                return null;
+            c.addChild(b);
+            return c;
         }
     }
 
-    private ConditionNode readCondition() {
-        if(list.checkSequence("(")) {
-            TokenList l=list.getSubsequence();
-            if(l!=null)
-                return getCondition(l);
+    private ConditionNode readCondition(TokenList l) {
+        if(l.checkSequence("(")) {
+            TokenList A=l.getSubsequence();
+            if(A!=null){
+                ConditionNode inner=getCondition(A);
+                return inner;
+            }
             else return null;
-        } else if(list.checkSequence("v")) {
+        } else if(l.checkSequence("v")) {
 
             //Read expression syntax [value][=<>][value]
-            String a=list.getCurrentToken().getText();
-            list.next();
-            String opr=list.getCurrentToken().getText();
+            String a=l.getCurrentToken().getText();
+            l.next();
+            String opr=l.getCurrentToken().getText();
             if(!opr.matches("[=<>]")) {
                 resource.logError("Operator expected");
                 return null;
             }
-            list.next();
-            if(!list.checkSequence("v")) {
+            l.next();
+            if(!l.checkSequence("v")) {
                 resource.logError("Expression syntax is : a>b");
                 return null;
             }
-            String b=list.getCurrentToken().getText();
-            list.next();
+            String b=l.getCurrentToken().getText();
+            l.next();
 
             //Get from table
             MetaCell param=currentTable.getParam(a);
-            DataCell paramVal=param.createCell();
-            paramVal.setValue(b);
             if(param==null) {
                 resource.logError("Parameter '"+a+
                         "' doesn't exists in table '"+currentTable.getName());
                 return null;
             }
+            DataCell paramVal=param.createCell();
+
+            CellType type=AbstractCell.detectValueType(b);
+            if(type!=param.getType())
+                resource.logWarning("Incompatible data types for comparing "+
+                        AbstractCell.getCellType(type)+" and "+
+                        AbstractCell.getCellType(param.getType())
+                        +" for param "+ param.getName() +" using java Object.compare");
+
+            paramVal.setValue(b);
+
             ExpressionNode node=new ExpressionNode(param,paramVal,opr);
             return node;
-        } else {
-            resource.logError("Condition syntax error");
+        } else
             return null;
-        }
-
     }
 
     private Table getTable(boolean shouldExist) {

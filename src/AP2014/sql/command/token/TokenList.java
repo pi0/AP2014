@@ -57,6 +57,7 @@ public class TokenList {
 
     public TokenList getSubsequence() {
         TokenList tl=new TokenList(resource);
+        tl.currentToken=0;
         int pCount=0;
         while(true) {
             if(checkSequence("("))
@@ -113,6 +114,7 @@ public class TokenList {
                         return false;
                     } else if (!current.getText().equals(String.valueOf(c))) {
                         if(log)resource.logError("unexpected " + current + " (symbol " + c + "was expected");
+                        return false;
                     }
                     break;
             }
@@ -121,7 +123,7 @@ public class TokenList {
     }
 
     public TokenItem getCurrentToken() {
-        if (currentToken > 0 && currentToken < tokens.size())
+        if (currentToken >= 0 && currentToken < tokens.size())
             return tokens.get(currentToken);
         else return null;
     }
