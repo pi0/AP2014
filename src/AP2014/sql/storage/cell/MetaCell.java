@@ -10,10 +10,6 @@ public class MetaCell extends AbstractCell {
         return new DataCell(paramName,value,maxValue,type);
     }
 
-    public MetaCell byValue(Object value){
-        return new MetaCell(paramName,value,maxValue,type);
-    }
-
     @Override
     public String toString() {
         return paramName.toString()+":"+getCellType(type);

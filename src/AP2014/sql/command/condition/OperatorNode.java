@@ -35,7 +35,7 @@ public class OperatorNode extends ConditionNode{
                     if(operatorType==OperatorType.OPERATOR_TYPE_AND)
                         return false;
         }
-        return true;//no child?
+        return false;//OR and all false
     }
 
 }

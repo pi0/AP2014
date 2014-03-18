@@ -1,6 +1,7 @@
 package AP2014.sql.command.condition;
 
 import AP2014.sql.storage.Record;
+import AP2014.sql.storage.Table;
 
 import java.util.Vector;
 
@@ -19,5 +20,12 @@ public abstract class ConditionNode {
 
     public abstract boolean accepts(Record record);
 
+    public Vector<Record> getMatchedRecords(Table table) {
+        Vector<Record> m=new Vector<Record>();
+        for(Record r:table.getRecords())
+            if(accepts(r))
+                m.add(r);
+        return m;
+    }
 }
 

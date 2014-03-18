@@ -30,7 +30,7 @@ public class Table {
         return params;
     }
 
-    public Record getRecord() {
+    public Record makeRecord() {
         Vector<DataCell> cells;
         cells=new Vector<DataCell>(params.size());
         for(MetaCell mcell:params)
@@ -38,6 +38,13 @@ public class Table {
         return new Record(cells);
     }
 
+    public Vector<Record> getRecords() {
+        return records;
+    }
+
+    public void deleteRecord(Record r) {
+        records.remove(r);
+    }
 
     public String getName() {
         return name;

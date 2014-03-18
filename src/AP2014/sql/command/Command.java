@@ -205,7 +205,7 @@ public class Command {
         }
 
         //Create a record
-        Record r=table.getRecord();
+        Record r=table.makeRecord();
         for(int i=0;i<mParams.size() && i<values.size();i++) {
             DataCell c=r.getCell(mParams.get(i));
             String val=values.get(i);
@@ -220,6 +220,21 @@ public class Command {
         table.addRecord(r);
 
         resource.logInfo("new record added to '"+table.getName()+"'");
+    }
+
+    private void deleteFrom() {
+        Table table = getTable(true);
+        if (table == null)
+            return;
+        list.next();
+
+        if(!list.checkSequenceAndLog("k", "where"))
+            return;
+        list.next();
+
+        ConditionNode c=getCondition(table);
+        for(Record r:c.getMatchedRecords(table))
+                table.deleteRecord(r);
     }
 
     private void updateFrom() {
@@ -248,16 +263,6 @@ public class Command {
         //TODO : GET CONDITION
         //TODO
 
-    }
-
-    private void deleteFrom() {
-        Table table = getTable(true);
-        if (table == null)
-            return;
-        list.next();
-
-        //TODO : GET CONDITION
-        //TODO
     }
 
     private void select() {
@@ -312,6 +317,7 @@ public class Command {
             }
             OperatorNode on=new OperatorNode(ot);
             on.addChild(a);
+            l.next();
             on.addChild(getCondition(l));
             return on;
         }
@@ -342,13 +348,15 @@ public class Command {
             list.next();
 
             //Get from table
-            MetaCell param=currentTable.getParam(a).byValue(b);
+            MetaCell param=currentTable.getParam(a);
+            DataCell paramVal=param.createCell();
+            paramVal.setValue(b);
             if(param==null) {
                 resource.logError("Parameter '"+a+
                         "' doesn't exists in table '"+currentTable.getName());
                 return null;
             }
-            ExpressionNode node=new ExpressionNode(param,opr);
+            ExpressionNode node=new ExpressionNode(param,paramVal,opr);
             return node;
         } else {
             resource.logError("Condition syntax error");

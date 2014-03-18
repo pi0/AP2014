@@ -11,7 +11,7 @@ public class TokenItem {
 
     static final String keywordRegex="[^'\"\\s]\\S+";
     static final String valueRegex="'.*?'|\".*?\"|[\\w\\.]+";
-    static final String symbolRegex="[=();,]";
+    static final String symbolRegex="[=<>();,]";
     static final String[] validKeywords={
             "create","table","drop","insert","into",
             "parameter","values","from","set","where",
@@ -29,7 +29,7 @@ public class TokenItem {
             this.type=TokenItemType.TOKEN_ITEM_TYPE_SYMBOL;
         else if(text.matches(valueRegex)) {
             this.type=TokenItemType.TOKEN_ITEM_TYPE_VALUE;
-            this.text=text.replace("^['\"]|['\"]$","");
+            this.text=text.replaceAll("^['\"]|['\"]$", "");
         }
         else this.type=TokenItemType.TOKEN_ITEM_TYPE_INVALID;
 
