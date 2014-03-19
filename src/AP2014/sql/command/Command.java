@@ -342,10 +342,8 @@ public class Command {
 
         //get condition accepted records
         Vector<Record> records=getWhere(table);
-        if(records==null) {
-            resource.logError("Invalid condition!");
+        if(records==null)
             return;
-        }
 
         //Create a new table
         Table t=new Table(table.getName()+"_sub",params);
@@ -371,7 +369,7 @@ public class Command {
         currentTable=table;
         ConditionNode c=getCondition(list);
         if(c==null)
-            resource.logError("condition syntax error!");
+            resource.logError("invalid condition");
         return c;
     }
 
@@ -455,7 +453,7 @@ public class Command {
     }
 
     private Table getTable(boolean shouldExist) {
-        if (list.checkSequenceAndLog("v")) {
+        if (list.checkSequence("v")) {
             Table table=db.getTable
                     (list.getCurrentToken().getText());
             if(shouldExist == (table!=null))
@@ -487,7 +485,7 @@ public class Command {
         c.exec();
 
         if(c.resource.getTables().size()<=0) {
-            resource.logError("internal error ! select returned no tables");
+            resource.logError("select gets no tables");
             return null;
         }
 

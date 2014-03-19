@@ -1,6 +1,7 @@
 package AP2014.sql;
 
 import AP2014.sql.storage.Table;
+import com.intellij.openapi.options.colors.pages.ANSIColoredConsoleColorsPage;
 
 import java.io.PrintStream;
 import java.util.Vector;
@@ -21,10 +22,11 @@ public class Resource {
 
     public void log(String message,String tag) {
         logHolder.append("["+tag+"]\t"+message+"\n");
+
     }
 
     public void logError(String message) {
-        log(message,"ERR");
+        log(message, "ERR");
     }
 
     public void logWarning(String message) {
@@ -38,6 +40,23 @@ public class Resource {
 
     public void dump(PrintStream stream) {
         stream.print(logHolder);
+    }
+
+
+}
+
+class LogItem {
+    enum LogItemType {
+        LOG_ITEM_TYPE_ERROR,
+        LOG_ITEM_TYPE_WARN,
+        LOG_ITEM_TYPE_INFO
+    }
+    private LogItemType type;
+    private String message;
+
+    LogItem(LogItemType type, String message) {
+        this.type = type;
+        this.message = message;
     }
 
 

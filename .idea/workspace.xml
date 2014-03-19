@@ -22,7 +22,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -58,8 +58,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
       <breakpoint url="file://$PROJECT_DIR$/src/AP2014/sql/command/Command.java" line="250" class="AP2014.sql.command.Command" package="AP2014.sql.command">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -76,8 +76,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_rules />
-    <ui_properties />
+    <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -88,59 +88,32 @@
       <file leaf-file-name="Command.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1028" selection-end="1028" vertical-scroll-proportion="0.0" vertical-offset="596" max-vertical-offset="5880">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6962" max-vertical-offset="11046">
+              <caret line="338" column="25" selection-start-line="338" selection-start-column="25" selection-end-line="338" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#isValid#0;class#Command#0" expanded="false" />
-                <element signature="method#createTable#0;class#Command#0" expanded="false" />
-                <element signature="e#2816#2826#0" expanded="true" />
-                <element signature="method#insertInto#0;class#Command#0" expanded="false" />
-                <element signature="method#deleteFrom#0;class#Command#0" expanded="false" />
-                <element signature="e#7544#7569#0" expanded="true" />
-                <element signature="method#getCondition#0;class#Command#0" expanded="false" />
-                <element signature="method#getCondition#1;class#Command#0" expanded="false" />
-                <element signature="method#readCondition#0;class#Command#0" expanded="false" />
-                <element signature="method#getTable#0;class#Command#0" expanded="false" />
-                <element signature="e#15085#15093#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQL.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQL.java">
+      <file leaf-file-name="ConditionNode.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ConditionNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0" vertical-offset="316" max-vertical-offset="672">
-              <folding />
+            <state vertical-scroll-proportion="-3.2142856" vertical-offset="99" max-vertical-offset="672">
+              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <folding>
+                <element signature="e#556#564#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SQLApp.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQLApp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.64606744" vertical-offset="85" max-vertical-offset="441">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TokenList.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TokenList.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/token/TokenList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="21" selection-start="1835" selection-end="1835" vertical-scroll-proportion="0.0" vertical-offset="980" max-vertical-offset="3297">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="testQuery.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AP2014/sql/testQuery.txt">
-          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="1" selection-start="410" selection-end="410" vertical-scroll-proportion="-6.230769" vertical-offset="27" max-vertical-offset="357">
+            <state vertical-scroll-proportion="1.3548387" vertical-offset="252" max-vertical-offset="3045">
+              <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -193,8 +166,6 @@
         <option value="$PROJECT_DIR$/src/AP2014/sql/command/condition/OperatorType.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/cell/AbstractCell.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/Database.java" />
-        <option value="$PROJECT_DIR$/src/AP2014/sql/SQL.java" />
-        <option value="$PROJECT_DIR$/src/AP2014/sql/SQLApp.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/cell/MetaCell.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/command/condition/ConditionNode.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/command/condition/ExpressionNode.java" />
@@ -203,10 +174,12 @@
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/Record.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/Table.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/command/token/TokenItem.java" />
+        <option value="$PROJECT_DIR$/src/AP2014/sql/command/token/TokenList.java" />
+        <option value="$PROJECT_DIR$/src/AP2014/sql/SQL.java" />
+        <option value="$PROJECT_DIR$/src/AP2014/sql/SQLApp.java" />
+        <option value="$PROJECT_DIR$/src/AP2014/sql/Resource.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/command/Command.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/testQuery.txt" />
-        <option value="$PROJECT_DIR$/src/AP2014/sql/Resource.java" />
-        <option value="$PROJECT_DIR$/src/AP2014/sql/command/token/TokenList.java" />
       </list>
     </option>
   </component>
@@ -235,7 +208,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -247,88 +220,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AP2014" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AP2014" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SourceCode" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AP2014" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="examcheck" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
@@ -510,6 +401,88 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AP2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AP2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SourceCode" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AP2014" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="examcheck" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -662,13 +635,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails" singleton="true">
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
       <module name="" />
       <setting name="vmparams" value="" />
       <setting name="cmdLine" value="run-app" />
@@ -686,7 +659,7 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -767,7 +740,7 @@
       <option name="launchUrl" value="false" />
       <option name="launcherParameters">
         <LauncherParameters>
-          <option name="browserFamily" value="FIREFOX" />
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
           <option name="launcherType" value="OSDefault" />
           <option name="newPlayerInstance" value="false" />
           <option name="playerPath" value="FlashPlayerDebugger.exe" />
@@ -804,13 +777,14 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
       <option name="BCName" value="" />
       <option name="launcherParameters">
         <LauncherParameters>
-          <option name="browserFamily" value="FIREFOX" />
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
           <option name="launcherType" value="OSDefault" />
           <option name="newPlayerInstance" value="false" />
           <option name="playerPath" value="FlashPlayerDebugger.exe" />
@@ -871,6 +845,7 @@
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="CandyCrush" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -927,22 +902,8 @@
       <AnalysisUIOptions />
     </option>
   </component>
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
-    <option name="USER" value="" />
-    <option name="PASSWORD" value="" />
-    <option name="mySSHConnectionTimeout" value="30000" />
-    <option name="mySSHReadTimeout" value="30000" />
-    <option name="LAST_MERGED_REVISION" />
-    <option name="MERGE_DRY_RUN" value="false" />
-    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
-    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
-    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
-    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
-    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
-    <option name="IGNORE_EXTERNALS" value="false" />
-    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -971,11 +932,12 @@
       <workItem from="1395130520320" duration="5463000" />
       <workItem from="1395140935577" duration="25792000" />
       <workItem from="1395169142671" duration="17727000" />
+      <workItem from="1395229512252" duration="2735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159569000" />
+    <option name="totallyTimeSpent" value="162304000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1007,16 +969,15 @@
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3987441" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3984252" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43799058" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984252" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20058565" sideWeight="0.50078493" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1027,11 +988,15 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
   </component>
@@ -1044,7 +1009,9 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1053,7 +1020,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ConditionNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="5" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462">
+          <caret line="6" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#556#564#0" expanded="true" />
           </folding>
@@ -1062,7 +1030,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ExpressionNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="29" selection-start="543" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="714">
+          <caret line="22" column="29" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1071,7 +1040,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/cell/AbstractCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="20" selection-start="147" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="609">
+        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="609">
+          <caret line="6" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#555#556#0" expanded="false" />
           </folding>
@@ -1080,64 +1050,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/OperatorNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="24" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="861">
+        <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="861">
+          <caret line="16" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1302" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1302">
+          <caret line="19" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/io/MyScanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1785" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1785">
+          <caret line="6" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/io/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="798" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="798">
+          <caret line="19" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2499" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2499">
+          <caret line="15" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="5" selection-start="465" selection-end="465" vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1197" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1197">
+          <caret line="19" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2499" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2499">
+          <caret line="15" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="37" selection-start="581" selection-end="581" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="735" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="735">
+          <caret line="20" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="31" selection-start="3568" selection-end="3568" vertical-scroll-proportion="0.0" vertical-offset="2436" max-vertical-offset="2625" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2436" max-vertical-offset="2625">
+          <caret line="116" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="16" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="504" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="504">
+          <caret line="3" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/testapps/DigitFSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="41" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="336" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="336">
+          <caret line="5" column="41" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="11" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="714" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="714">
+          <caret line="12" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/sql.uml">
@@ -1149,8 +1142,8 @@
             <node x="-15.174708818635565" y="146.74209650582364">AP2014.sql.Param.ParamType</node>
             <node x="0.0" y="479.0">AP2014.sql.Record</node>
             <node x="0.0" y="278.0">AP2014.sql.Database</node>
-            <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
             <node x="306.0" y="479.0">AP2014.sql.Command</node>
+            <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
             <node x="263.0" y="278.0">AP2014.sql.Table</node>
             <node x="437.0" y="479.0">AP2014.sql.Value</node>
             <node x="16.0" y="0.0">AP2014.sql.Param</node>
@@ -1187,8 +1180,8 @@
             <node x="-15.174708818635565" y="146.74209650582364">AP2014.sql.Param.ParamType</node>
             <node x="0.0" y="479.0">AP2014.sql.Record</node>
             <node x="0.0" y="278.0">AP2014.sql.Database</node>
-            <node x="306.0" y="479.0">AP2014.sql.Command</node>
             <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
+            <node x="306.0" y="479.0">AP2014.sql.Command</node>
             <node x="263.0" y="278.0">AP2014.sql.Table</node>
             <node x="437.0" y="479.0">AP2014.sql.Value</node>
             <node x="16.0" y="0.0">AP2014.sql.Param</node>
@@ -1218,7 +1211,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/Command.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="25" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="693" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="693">
+          <caret line="11" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/sql.uml">
@@ -1230,8 +1225,8 @@
             <node x="-15.174708818635565" y="146.74209650582364">AP2014.sql.Param.ParamType</node>
             <node x="0.0" y="479.0">AP2014.sql.Record</node>
             <node x="0.0" y="278.0">AP2014.sql.Database</node>
-            <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
             <node x="306.0" y="479.0">AP2014.sql.Command</node>
+            <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
             <node x="263.0" y="278.0">AP2014.sql.Table</node>
             <node x="437.0" y="479.0">AP2014.sql.Value</node>
             <node x="16.0" y="0.0">AP2014.sql.Param</node>
@@ -1261,27 +1256,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/candycrush/GameBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="36" selection-start="6526" selection-end="6526" vertical-scroll-proportion="0.80904526" vertical-offset="3654" max-vertical-offset="5838" />
+        <state vertical-scroll-proportion="0.80904526" vertical-offset="3654" max-vertical-offset="5838">
+          <caret line="215" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/Answer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="24" selection-start="2339" selection-end="2339" vertical-scroll-proportion="0.552459" vertical-offset="1700" max-vertical-offset="2310" />
+        <state vertical-scroll-proportion="0.552459" vertical-offset="1700" max-vertical-offset="2310">
+          <caret line="99" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="11" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+          <caret line="12" column="11" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="16" selection-start="61" selection-end="61" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="462" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="462">
+          <caret line="3" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/testapps/DigitFSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="43" selection-start="133" selection-end="133" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="336" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="336">
+          <caret line="5" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/testapps/Digit.txt">
@@ -1289,61 +1294,79 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/io/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="18" selection-start="508" selection-end="508" vertical-scroll-proportion="0.5508197" vertical-offset="0" max-vertical-offset="756" />
+        <state vertical-scroll-proportion="0.5508197" vertical-offset="0" max-vertical-offset="756">
+          <caret line="17" column="18" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/io/MyScanner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="94" selection-end="94" vertical-scroll-proportion="-0.03442623" vertical-offset="126" max-vertical-offset="1764" />
+        <state vertical-scroll-proportion="-0.03442623" vertical-offset="126" max-vertical-offset="1764">
+          <caret line="6" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="1155" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="1155">
+          <caret line="37" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1113" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1113">
+          <caret line="4" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="314" selection-end="314" vertical-scroll-proportion="-0.17213115" vertical-offset="315" max-vertical-offset="2394" />
+        <state vertical-scroll-proportion="-0.17213115" vertical-offset="315" max-vertical-offset="2394">
+          <caret line="15" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/OperatorType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="111" selection-end="111" vertical-scroll-proportion="0.17213115" vertical-offset="0" max-vertical-offset="610">
-          <folding />
+        <state vertical-scroll-proportion="0.17213115" vertical-offset="0" max-vertical-offset="610">
+          <caret line="5" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/cell/CellType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="19" selection-start="118" selection-end="118" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="273">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="273">
+          <caret line="5" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/fsm/FSMApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="192" selection-end="192" vertical-scroll-proportion="0.21052632" vertical-offset="0" max-vertical-offset="1197" />
+        <state vertical-scroll-proportion="0.21052632" vertical-offset="0" max-vertical-offset="1197">
+          <caret line="9" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/lib/btc-ascii-table-1.0.jar!/com/bethecoder/ascii_table/ASCIITable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.6823899" vertical-offset="455" max-vertical-offset="798" />
+        <state vertical-scroll-proportion="0.6823899" vertical-offset="455" max-vertical-offset="798">
+          <caret line="33" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/cell/AbstractCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="31" selection-start="529" selection-end="529" vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="1323">
+        <state vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="1323">
+          <caret line="22" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#555#556#0" expanded="false" />
           </folding>
@@ -1352,53 +1375,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="20" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="672">
+        <state vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="672">
+          <caret line="21" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/cell/MetaCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="483">
+        <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="483">
+          <caret line="11" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ExpressionNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="5" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1659">
+        <state vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1659">
+          <caret line="9" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ConditionNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0" vertical-offset="344" max-vertical-offset="714">
-          <folding>
-            <element signature="e#556#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/OperatorNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="24" selection-start="780" selection-end="845" vertical-scroll-proportion="0.2977528" vertical-offset="524" max-vertical-offset="1071">
+        <state vertical-scroll-proportion="0.2977528" vertical-offset="524" max-vertical-offset="1071">
+          <caret line="32" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0/src.zip!/java/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="13" selection-start="3035" selection-end="3058" vertical-scroll-proportion="0.3315508" vertical-offset="1073" max-vertical-offset="29631">
+        <state vertical-scroll-proportion="0.3315508" vertical-offset="1073" max-vertical-offset="29631">
+          <caret line="82" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/Record.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="5" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1029">
+        <state vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="1029">
+          <caret line="33" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1407,7 +1427,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/cell/DataCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="26" selection-start="885" selection-end="893" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1407">
+        <state vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="1407">
+          <caret line="30" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#896#897#0" expanded="true" />
             <element signature="e#924#925#0" expanded="true" />
@@ -1417,31 +1438,67 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/storage/Table.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="41" selection-start="1430" selection-end="1430" vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1806">
+        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="1806">
+          <caret line="60" column="41" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/token/TokenItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="38" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1365">
+        <state vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="1365">
+          <caret line="13" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55024713" vertical-offset="23" max-vertical-offset="630">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQLApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41525424" vertical-offset="0" max-vertical-offset="441">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/Resource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="5" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" vertical-offset="407" max-vertical-offset="1008">
+        <state vertical-scroll-proportion="0.5254237" vertical-offset="969" max-vertical-offset="1323">
+          <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+            <element signature="e#851#852#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/token/TokenList.java">
+    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/condition/ConditionNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="21" selection-start="1835" selection-end="1835" vertical-scroll-proportion="0.0" vertical-offset="980" max-vertical-offset="3297">
-          <folding />
+        <state vertical-scroll-proportion="-3.2142856" vertical-offset="99" max-vertical-offset="672">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="e#556#564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6962" max-vertical-offset="11046">
+          <caret line="338" column="25" selection-start-line="338" selection-start-column="25" selection-end-line="338" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1450,41 +1507,16 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="1" selection-start="410" selection-end="410" vertical-scroll-proportion="-6.230769" vertical-offset="27" max-vertical-offset="357">
+        <state vertical-scroll-proportion="0.7356688" vertical-offset="0" max-vertical-offset="357">
+          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/Command.java">
+    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/command/token/TokenList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1028" selection-end="1028" vertical-scroll-proportion="0.0" vertical-offset="596" max-vertical-offset="5880">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#isValid#0;class#Command#0" expanded="false" />
-            <element signature="method#createTable#0;class#Command#0" expanded="false" />
-            <element signature="e#2816#2826#0" expanded="true" />
-            <element signature="method#insertInto#0;class#Command#0" expanded="false" />
-            <element signature="method#deleteFrom#0;class#Command#0" expanded="false" />
-            <element signature="e#7544#7569#0" expanded="true" />
-            <element signature="method#getCondition#0;class#Command#0" expanded="false" />
-            <element signature="method#getCondition#1;class#Command#0" expanded="false" />
-            <element signature="method#readCondition#0;class#Command#0" expanded="false" />
-            <element signature="method#getTable#0;class#Command#0" expanded="false" />
-            <element signature="e#15085#15093#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0" vertical-offset="316" max-vertical-offset="672">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/SQLApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.64606744" vertical-offset="85" max-vertical-offset="441">
+        <state vertical-scroll-proportion="1.3548387" vertical-offset="252" max-vertical-offset="3045">
+          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
           <folding />
         </state>
       </provider>
