@@ -1,52 +1,44 @@
 package AP2014.sql.command;
 
+import javafx.util.Pair;
+import java.util.Vector;
 import AP2014.sql.SQL;
-import AP2014.sql.command.condition.*;
-import AP2014.sql.command.token.TokenList;
-import AP2014.sql.storage.Database;
 import AP2014.sql.Resource;
 import AP2014.sql.storage.*;
 import AP2014.sql.storage.Table;
-import AP2014.sql.storage.cell.AbstractCell;
-import AP2014.sql.storage.cell.CellType;
-import AP2014.sql.storage.cell.DataCell;
-import AP2014.sql.storage.cell.MetaCell;
-import javafx.util.Pair;
-import org.omg.DynamicAny._DynEnumStub;
-
-import java.util.Vector;
+import AP2014.sql.storage.cell.*;
+import AP2014.sql.command.condition.*;
+import AP2014.sql.command.token.TokenList;
 
 public class Command {
+
+    private final static String querySplitter = "[\n;]+";
 
     private Resource resource;
     private Database db;
     private Table currentTable;
     private TokenList list;
-    private String command;
+    //private String command;
 
     public static void query(String commands,Database db, Resource resource) {
-        for (String command : commands.split("[\n;]+")) {
+        for (String command : commands.split(querySplitter)) {
             Command c=new Command(command,db,resource);
             if(c.isValid())
                 c.exec();
             else
-                resource.logError("Invalid command : "+command);
+                resource.logError("Query error : "+command);
         }
     }
 
     public Command(String command,Database db, Resource resource) {
         this.db = db;
         this.resource = resource;
-        this.command=command;
-        //
         this.list = new TokenList(command, resource);
-        //
     }
 
     public Command(TokenList list,Command c) {
         this.db = c.db;
         this.resource = c.resource;
-        this.command="";//TODO
         this.list=list;
     }
 
@@ -55,9 +47,8 @@ public class Command {
     }
 
     public void exec() {
-
         if(!isValid()) {
-            resource.logError("Invalid command!");
+            resource.logError("Invalid query");
             return;
         }
 
@@ -79,18 +70,17 @@ public class Command {
         } else if (list.checkSequence("#"))
             ;//quite!!
         else
-            resource.logError("unknown command : "+command);
+            resource.logError("Unknown query : "+list.toString());
     }
 
     private void createTable() {
-
         //Get table name
         Table table = getTable(false);
         if (table != null)
             return;//Table already exists
         String tableName=list.getCurrentToken().getText();
         if(!SQL.isValidName(tableName)){
-            resource.logError("Invalid table name : '"+tableName+"'");
+            resource.logError("Invalid table name : "+_(tableName));
             return;
         }
         list.next();
@@ -98,7 +88,7 @@ public class Command {
         //Get table params
         Vector<MetaCell> params=new Vector<MetaCell>();
         if(!list.checkSequenceAndLog("(")) {
-            resource.logError("table needs parameters!");
+            resource.logError("Table needs parameters");
             return;
         }
         list.next();
@@ -107,7 +97,7 @@ public class Command {
 
             if(!(list.checkSequence("vk","int")||
                     list.checkSequence("vk","float")||
-                            list.checkSequence("vk","string"))) {//TODO : use regex :D
+                            list.checkSequence("vk","string"))) {
                 if(list.checkSequence(")")) {
                     list.next();
                     break;
@@ -118,18 +108,18 @@ public class Command {
             }
 
             //Get param name
-            String name=list.getCurrentToken().getText();
-            if(!SQL.isValidName(name)) {
-                resource.logError("invalid parameter name :'"+name+"'");
+            String paramName=list.getCurrentToken().getText();
+            if(!SQL.isValidName(paramName)) {
+                resource.logError("Invalid parameter name : "+_(paramName));
                 return;
             }
             list.next();
 
             //Get param type
-            CellType type= AbstractCell.getCellType(
-                    list.getCurrentToken().getText());
+            String typeS=list.getCurrentToken().getText();
+            CellType type= AbstractCell.getCellType(typeS);
             if(type==null){
-                resource.logError("Invalid type");
+                resource.logError("Invalid type : "+_(typeS));
                 return;
             }
             list.next();
@@ -140,7 +130,7 @@ public class Command {
                 try{
                     maxVal=Integer.parseInt(list.getCurrentToken().getText());
                 } catch (NumberFormatException e) {
-                    resource.logError("invalid maximum value");
+                    resource.logError("Invalid maximum value for parameter");
                     return;
                 }
                 list.next();
@@ -150,12 +140,12 @@ public class Command {
                 list.next();
             }
             else {
-                resource.logError("invalid table parameters");
+                resource.logError("Table parameters syntax error");
                 return;
             }
 
             //Add to table params
-            params.add(new MetaCell(name,null,maxVal,type));
+            params.add(new MetaCell(paramName,null,maxVal,type));
 
         }
 
@@ -163,7 +153,7 @@ public class Command {
         table=new Table(tableName,params);
         db.addTable(table);
 
-        resource.logInfo("table '"+tableName+"'"+" successfully created");
+        resource.logInfo("Table '"+tableName+"'"+" successfully created!");
     }
 
     private void insertInto() {
@@ -179,7 +169,7 @@ public class Command {
             list.next();
             params=getParams();
             if(params==null) {
-                resource.logError("invalid parameters syntax");
+                resource.logError("Invalid parameters");
                 return;
             }
         }
@@ -187,7 +177,7 @@ public class Command {
             list.next();
             values=getParams();
             if(values==null) {
-                resource.logError("invalid values syntax");
+                resource.logError("Invalid values");
                 return;
             }
         }
@@ -199,13 +189,13 @@ public class Command {
             for(String param:params) {
                 MetaCell m=table.getParam(param);
                 if(m==null){
-                    resource.logError("Invalid parameter '"+param+"'");
+                    resource.logError("Invalid parameter : "+_(param));
                     return;
                 }
                 mParams.add(m);
             }
         } else {
-            //Default set all params
+            //Set all params
             mParams=table.getParams();
         }
 
@@ -213,7 +203,7 @@ public class Command {
         if(values==null)
             values=new Vector<String>();
         if(mParams.size()!=values.size()) {
-            resource.logWarning("Invalid number of values! feeling by null");
+            resource.logWarning("Invalid number of values , filling by null");
         }
 
         //Create a record
@@ -222,7 +212,7 @@ public class Command {
             DataCell c=r.getCell(mParams.get(i));
             String val=values.get(i);
             if(AbstractCell.detectValueType(val)!=c.getType()) {
-                resource.logError("Incompatible type for "+mParams.get(i));
+                resource.logError("Incompatible type for parameter :"+(mParams.get(i).toString()));
                 return;
             }
             c.setValue(val);
@@ -231,7 +221,7 @@ public class Command {
         //Add it to table
         table.addRecord(r);
 
-        resource.logInfo("new record added to '"+table.getName()+"'");
+        resource.logInfo("New record added to :"+_(table.getName()));
     }
 
     private void deleteFrom() {
@@ -262,7 +252,7 @@ public class Command {
             String paramS=list.getCurrentToken().getText();
             MetaCell param=table.getParam(paramS);
             if(param==null) {
-                resource.logError("Invalid parameter : "+paramS);
+                resource.logError("Invalid parameter : "+_(paramS));
                 return;
             }
             list.next(2);
@@ -271,7 +261,7 @@ public class Command {
             DataCell value=param.createCell();
             String valueS=list.getCurrentToken().getText();
             if(AbstractCell.detectValueType(valueS)!=value.getType()) {
-                resource.logError("incompatible value for "+value.getName());
+                resource.logError("Incompatible value for "+param.toString());
                 return;
             }
             value.setValue(valueS);
@@ -303,7 +293,7 @@ public class Command {
             paramsS=new Vector<String>();
             while (!list.isEndOfList()) {
                 if(!list.checkSequence("v")) {
-                    resource.logError("invalid select params");
+                    resource.logError("Invalid select parameters");
                     return;
                 } else {
                     paramsS.add(list.getCurrentToken().getText());
@@ -333,7 +323,7 @@ public class Command {
             for(String paramS:paramsS) {
                 MetaCell m=table.getParam(paramS);
                 if(m==null) {//Be nice !
-                    resource.logWarning("invalid parameter '"+paramS+"' and wont be selected");
+                    resource.logWarning("Invalid parameter : "+_(paramS)+" and wont be selected");
                     continue;
                 }
                 params.add(m);
@@ -346,7 +336,7 @@ public class Command {
             return;
 
         //Create a new table
-        Table t=new Table(table.getName()+"_sub",params);
+        Table t=new Table(table.getName()+"_subTable",params);
         t.addRecords(records);
 
         //Add this table to resource
@@ -369,7 +359,7 @@ public class Command {
         currentTable=table;
         ConditionNode c=getCondition(list);
         if(c==null)
-            resource.logError("invalid condition");
+            resource.logError("Invalid condition");
         return c;
     }
 
@@ -422,7 +412,7 @@ public class Command {
             }
             l.next();
             if(!l.checkSequence("v")) {
-                resource.logError("Expression syntax is : a>b");
+                resource.logError("Expression syntax is : [value][operator][value]");
                 return null;
             }
             String b=l.getCurrentToken().getText();
@@ -431,8 +421,8 @@ public class Command {
             //Get from table
             MetaCell param=currentTable.getParam(a);
             if(param==null) {
-                resource.logError("Parameter '"+a+
-                        "' doesn't exists in table '"+currentTable.getName());
+                resource.logError("Parameter "+_(a)+
+                        " doesn't exists in table "+_(currentTable.getName()));
                 return null;
             }
             DataCell paramVal=param.createCell();
@@ -459,7 +449,7 @@ public class Command {
             if(shouldExist == (table!=null))
                 return table;
             else
-                resource.logError("table '"+list.getCurrentToken().getText()+"' "+
+                resource.logError("Table "+_(list.getCurrentToken().getText())+
                         (shouldExist?"not found":"already exists"));
         }
         return null;
@@ -478,14 +468,14 @@ public class Command {
 
         TokenList subCommand=list.getSubsequence();
         if(subCommand==null || !subCommand.isValid()){
-            resource.logError("invalid sub command!");
+            resource.logError("Invalid subQuery");
             return null;
         }
         Command c=new Command(subCommand,this);
         c.exec();
 
         if(c.resource.getTables().size()<=0) {
-            resource.logError("select gets no tables");
+            resource.logError("SubQuery returned no tables");
             return null;
         }
 
@@ -515,6 +505,10 @@ public class Command {
                 return params;
         }
         return params;
+    }
+
+    private static String _(String txt){
+        return "'"+txt+"'";
     }
 
 

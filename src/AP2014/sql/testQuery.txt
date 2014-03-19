@@ -9,4 +9,4 @@ insert into boo values ( masoud , bonabi , 20.0 , 21 )
 insert into boo values ( asghar , 'gholami nejad' , 3.0 , 28 )
 #
 # delete from boo where ( family = parsa   and  age < 16  ) and score = 18
-update from ( select * from ( select family , score from boo ) where score > 18.0 ) set name = foo where family = parsa
+update from ( select name , family  from ( select family , score , name from boo ) where score > 18.0 ) set name = foo where family = parsa
