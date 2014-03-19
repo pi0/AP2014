@@ -83,6 +83,7 @@ public class Table {
         }
 
         ASCIITable table=ASCIITable.getInstance();
+        
         StringBuffer t=new StringBuffer();
         t.append(getName()+":\n");
         t.append(table.getTable(header, rows));

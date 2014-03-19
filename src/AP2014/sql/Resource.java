@@ -54,10 +54,4 @@ class LogItem {
     private LogItemType type;
     private String message;
 
-    LogItem(LogItemType type, String message) {
-        this.type = type;
-        this.message = message;
-    }
-
-
-}
+    LogItem(LogItemType type, String mess
