@@ -28,6 +28,11 @@ public class DataCell extends  AbstractCell{
         }
     }
 
+    public Object getValue() {
+        return value;
+    }
+
+
     public int compareTo(DataCell cell) {
         if(type!=cell.type)
             return 0;

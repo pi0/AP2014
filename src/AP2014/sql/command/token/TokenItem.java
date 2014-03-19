@@ -11,9 +11,9 @@ public class TokenItem {
 
     static final String keywordRegex="[^'\"\\s]\\S+";
     static final String valueRegex="'.*?'|\".*?\"|[\\w\\.]+";
-    static final String symbolRegex="[=<>();,]";
+    static final String symbolRegex="[*#=<>();,]";
     static final String[] validKeywords={
-            "create","table","drop","insert","into",
+            "create","table","drop","insert","update","into",
             "parameter","values","from","set","where",
             "and","or","select","delete","int","float","string"
     };

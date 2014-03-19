@@ -1,13 +1,22 @@
 package AP2014.sql;
 
+import AP2014.sql.storage.Table;
+
 import java.io.PrintStream;
+import java.util.Vector;
 
 public class Resource {
 
     private StringBuffer logHolder;
+    private Vector<Table> tables;
 
     public Resource() {
         logHolder=new StringBuffer();
+        tables=new Vector<Table>();
+    }
+
+    public Vector<Table> getTables() {
+        return tables;
     }
 
     public void log(String message,String tag) {

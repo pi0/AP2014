@@ -5,13 +5,14 @@ import AP2014.sql.command.condition.*;
 import AP2014.sql.command.token.TokenList;
 import AP2014.sql.storage.Database;
 import AP2014.sql.Resource;
-import AP2014.sql.storage.Record;
+import AP2014.sql.storage.*;
 import AP2014.sql.storage.Table;
 import AP2014.sql.storage.cell.AbstractCell;
 import AP2014.sql.storage.cell.CellType;
 import AP2014.sql.storage.cell.DataCell;
 import AP2014.sql.storage.cell.MetaCell;
 import javafx.util.Pair;
+import org.omg.DynamicAny._DynEnumStub;
 
 import java.util.Vector;
 
@@ -36,8 +37,17 @@ public class Command {
     public Command(String command,Database db, Resource resource) {
         this.db = db;
         this.resource = resource;
-        this.list = new TokenList(command, resource);
         this.command=command;
+        //
+        this.list = new TokenList(command, resource);
+        //
+    }
+
+    public Command(TokenList list,Command c) {
+        this.db = c.db;
+        this.resource = c.resource;
+        this.command="";//TODO
+        this.list=list;
     }
 
     public boolean isValid() {
@@ -66,7 +76,9 @@ public class Command {
         } else if (list.checkSequence("k", "select")) {
             list.next();
             select();
-        } else
+        } else if (list.checkSequence("#"))
+            ;//quite!!
+        else
             resource.logError("unknown command : "+command);
     }
 
@@ -224,61 +236,77 @@ public class Command {
 
     private void deleteFrom() {
         Table table = getTable(true);
-        if (table == null)
-            return;
+        if (table == null) return;
         list.next();
 
-        if(!list.checkSequenceAndLog("k", "where"))
-            return;
-        list.next();
-
-        ConditionNode c=getCondition(table);
-        if(c==null)
-            return;
-        for(Record r:c.getMatchedRecords(table))
-                table.deleteRecord(r);
+        Vector<Record> records=getWhere(table);
+        if(records==null)return;
+        table.deleteRecords(records);
     }
 
     private void updateFrom() {
-        Table table = getTable(true);
-        if (table == null)
-            return;
-        list.next();
-        if(!list.checkSequenceAndLog("k", "set"))
-            return;
+        Table table = getTableExtended();
+        if (table == null) return;
+
+        if(!list.checkSequenceAndLog("k", "set")) return;
         list.next();
 
-        Vector<Pair<String,String>> values=new Vector<Pair<String,String>>();
+        Vector<Pair<MetaCell,DataCell>> updates=
+                new Vector<Pair<MetaCell,DataCell>>();
 
         while(!list.isEndOfList()) {
             if(!list.checkSequenceAndLog("v=v"))
                 return;
-            String a=list.getCurrentToken().getText();
+
+            //Read param
+            String paramS=list.getCurrentToken().getText();
+            MetaCell param=table.getParam(paramS);
+            if(param==null) {
+                resource.logError("Invalid parameter : "+paramS);
+                return;
+            }
+            list.next(2);
+
+            //Read value
+            DataCell value=param.createCell();
+            String valueS=list.getCurrentToken().getText();
+            if(AbstractCell.detectValueType(valueS)!=value.getType()) {
+                resource.logError("incompatible value for "+value.getName());
+                return;
+            }
+            value.setValue(valueS);
             list.next();
-            String b=list.getCurrentToken().getText();
-            list.next();
-            values.add(new Pair(a,b));
-            if(list.checkSequence("where"))
+
+            updates.add(new Pair(param, value));
+
+            if(list.checkSequence("k","where"))
                 break;
         }
 
-        //TODO : GET CONDITION
-        //TODO
+        Vector<Record> records=getWhere(table);
+        if(records==null)return;
+        for(Record r:records)
+            r.update(updates);
 
     }
 
     private void select() {
+
+        //Get Params
+        Vector<String> paramsS=null;
+        boolean selectAllParams=false;
+
         if(list.checkSequence("*")) {
-            //TODO : use all params
+            selectAllParams=true;
             list.next();
         } else {
+            paramsS=new Vector<String>();
             while (!list.isEndOfList()) {
                 if(!list.checkSequence("v")) {
                     resource.logError("invalid select params");
                     return;
                 } else {
-                    String param=list.getCurrentToken().getText();
-                    //TODO
+                    paramsS.add(list.getCurrentToken().getText());
                     list.next();
                 }
                 if(list.checkSequence(",")) {
@@ -289,17 +317,61 @@ public class Command {
             }
         }
 
-        //BIG TODO : get select source !
-        //TODO : condition
-        //TODO
+        //Get source
+        if(!list.checkSequenceAndLog("k", "from"))
+            return;
+        list.next();
+        Table table = getTableExtended();
+        if (table == null) return;
 
+        //Get and check wanted params
+        Vector<MetaCell> params;
+        if(selectAllParams)
+            params=table.getParams();
+        else {
+            params=new Vector<MetaCell>();
+            for(String paramS:paramsS) {
+                MetaCell m=table.getParam(paramS);
+                if(m==null) {//Be nice !
+                    resource.logWarning("invalid parameter '"+paramS+"' and wont be selected");
+                    continue;
+                }
+                params.add(m);
+            }
+        }
+
+        //get condition accepted records
+        Vector<Record> records=getWhere(table);
+        if(records==null) {
+            resource.logError("Invalid condition!");
+            return;
+        }
+
+        //Create a new table
+        Table t=new Table(table.getName()+"_sub",params);
+        t.addRecords(records);
+
+        //Add this table to resource
+        resource.getTables().add(t);
+    }
+
+    private Vector<Record> getWhere(Table table) {
+        if(!list.checkSequenceAndLog("k", "where")) {
+            //Accept everything !
+            return table.getRecords();
+        }
+        list.next();
+        ConditionNode c=getCondition(table);
+        if(c!=null)
+            return c.getMatchedRecords(table);
+        else return null;
     }
 
     private ConditionNode getCondition(Table table) {
         currentTable=table;
         ConditionNode c=getCondition(list);
         if(c==null)
-            resource.logError("Syntax error!");
+            resource.logError("condition syntax error!");
         return c;
     }
 
@@ -393,6 +465,33 @@ public class Command {
                         (shouldExist?"not found":"already exists"));
         }
         return null;
+    }
+
+    private Table getTableExtended() {
+        Table table=getTable(true);
+
+        if(table!=null) {
+            list.next();
+            return table;
+        }
+
+        if(!list.checkSequence("(k","select"))
+            return null;
+
+        TokenList subCommand=list.getSubsequence();
+        if(subCommand==null || !subCommand.isValid()){
+            resource.logError("invalid sub command!");
+            return null;
+        }
+        Command c=new Command(subCommand,this);
+        c.exec();
+
+        if(c.resource.getTables().size()<=0) {
+            resource.logError("internal error ! select returned no tables");
+            return null;
+        }
+
+        return c.resource.getTables().elementAt(0);
     }
 
     private Vector<String> getParams() {

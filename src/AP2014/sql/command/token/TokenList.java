@@ -58,14 +58,20 @@ public class TokenList {
     public TokenList getSubsequence() {
         TokenList tl=new TokenList(resource);
         tl.currentToken=0;
-        int pCount=0;
+
+        if(!checkSequence("(")) {
+            resource.logError("Syntax error for parentheses");
+            return null;
+        }
+        next();
+        int pCount=1;
+
         while(true) {
+
             if(checkSequence("("))
                 pCount++;
             else if(checkSequence(")"))
                 pCount--;
-            else
-                tl.tokens.add(getCurrentToken());
 
             if(pCount<0) {
                 resource.logError("Syntax error for parentheses");
@@ -74,7 +80,9 @@ public class TokenList {
                 next();
                 return tl;
             } //else
-                // continue!
+
+            tl.tokens.add(getCurrentToken());
+
             next();
             if(isEndOfList())return tl;
         }

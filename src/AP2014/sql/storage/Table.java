@@ -46,12 +46,20 @@ public class Table {
         records.remove(r);
     }
 
+    public void deleteRecords(Vector<Record> records) {
+        this.records.removeAll(records);
+    }
+
     public String getName() {
         return name;
     }
 
     public void addRecord(Record record) {
         records.add(record);
+    }
+
+    public void addRecords(Vector<Record> records) {
+        this.records.addAll(records);
     }
 
     @Override
