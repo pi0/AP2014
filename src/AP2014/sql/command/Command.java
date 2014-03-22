@@ -221,7 +221,7 @@ public class Command {
         //Add it to table
         table.addRecord(r);
 
-        resource.logInfo("New record added to :"+_(table.getName()));
+        resource.logInfo("New record added to table "+_(table.getName()));
     }
 
     private void deleteFrom() {

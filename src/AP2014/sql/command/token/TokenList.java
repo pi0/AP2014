@@ -25,8 +25,8 @@ public class TokenList {
 
         command=command.toLowerCase();
 
-        Pattern p = Pattern.compile(TokenItem.keywordRegex + "|" +
-                TokenItem.symbolRegex + "|" + TokenItem.valueRegex);
+        Pattern p = Pattern.compile(TokenItem.symbolRegex + "|" +
+                TokenItem.keywordRegex + "|" + TokenItem.valueRegex);
         Matcher m = p.matcher(command);
         while (m.find()) {
             String token = command.substring(m.start(), m.end());
@@ -152,6 +152,17 @@ public class TokenList {
         next(1);
     }
 
+
+    @Override
+    public String toString() {
+        StringBuffer s=new StringBuffer();
+        for(TokenItem i:tokens)
+            s.append(i.toString()+"\n");
+        
+        if(s.length()>0)
+            return s.substring(0,s.length()-1);
+        else return "[empty]";
+    }
 }
 
 
