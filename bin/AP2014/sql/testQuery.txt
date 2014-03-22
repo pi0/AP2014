@@ -1,12 +1,4 @@
 create table boo ( name string , family string , score float , age int )
-#
 insert into boo values ( pedram , parsa , 17.0 , 15 )
 insert into boo values ( pooya , parsa , 20.0 , 20 )
 insert into boo values ( gholi , parsa , 18.0 , 20 )
-#
-insert into boo values ( gholi , babaee , 18.0 , 19 )
-insert into boo values ( masoud , bonabi , 20.0 , 21 )
-insert into boo values ( asghar , 'gholami nejad' , 3.0 , 28 )
-#
-# delete from boo where ( family = parsa   and  age < 16  ) and score = 18
-update from ( select name , family  from ( select family , score , name from boo ) where score > 18.0 ) set name = foo where family = parsa

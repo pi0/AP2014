@@ -164,5 +164,3 @@ public class TokenList {
         else return "[empty]";
     }
 }
-
-

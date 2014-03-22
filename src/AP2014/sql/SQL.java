@@ -25,7 +25,4 @@ public class SQL {
     public Resource query(String query) {
         Resource r=new Resource();
         Command.query(query,db,r);
-        return r;
-    }
-
-}
+ 

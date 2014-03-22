@@ -510,7 +510,4 @@ public class Command {
     private static String _(String txt){
         return "'"+txt+"'";
     }
-
-
-}
-
+

@@ -13,10 +13,4 @@ public class SQLApp {
      /*
         SQL sql=new SQL();
         Resource r=sql.query(Utils.readAllFile
-                (new File("src\\AP2014\\sql\\testQuery.txt")));
-        r.dump(System.out);
-        System.out.println(sql.getDb().getTable("boo").toString());
-        */
-    }
-
-}
+                (ne

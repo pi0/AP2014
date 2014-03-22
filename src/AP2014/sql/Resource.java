@@ -38,20 +38,4 @@ public class Resource {
     }
 
 
-    public void dump(PrintStream stream) {
-        stream.print(logHolder);
-    }
-
-
-}
-
-class LogItem {
-    enum LogItemType {
-        LOG_ITEM_TYPE_ERROR,
-        LOG_ITEM_TYPE_WARN,
-        LOG_ITEM_TYPE_INFO
-    }
-    private LogItemType type;
-    private String message;
-
-    LogItem(LogItemType type, String mess
+    public
