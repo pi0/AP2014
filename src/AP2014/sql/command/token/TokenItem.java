@@ -71,7 +71,4 @@ public class TokenItem {
             case TOKEN_ITEM_TYPE_VALUE:typeStr="value";break;
             default: typeStr="??";
         }
-        return typeStr+" '"+getText()+"' ";
-        
-    }
-}
+        return typeStr

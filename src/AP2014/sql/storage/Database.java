@@ -9,6 +9,7 @@ public class Database {
 
     public Database(String name) {
         tables=new Vector<Table>();
+        this.name=name;
     }
 
     public void addTable(Table table) {
@@ -21,6 +22,14 @@ public class Database {
                 return table;
         return null;
     }
+
+	public void drop(Table table) {
+		tables.remove(table);
+	}
+	
+	public String getName() {
+		return name;
+	}
 
 
 }

@@ -5,20 +5,17 @@ import java.util.Vector;
 import AP2014.sql.SQL;
 import AP2014.sql.Resource;
 import AP2014.sql.storage.*;
-import AP2014.sql.storage.Table;
 import AP2014.sql.storage.cell.*;
 import AP2014.sql.command.condition.*;
 import AP2014.sql.command.token.TokenList;
 
 public class Command {
 
-    private final static String querySplitter = "[\n;]+";
-
+    private static final String querySplitter = "[\n;]+";
     private Resource resource;
     private Database db;
     private Table currentTable;
     private TokenList list;
-    //private String command;
 
     public static void query(String commands,Database db, Resource resource) {
         for (String command : commands.split(querySplitter)) {
@@ -51,7 +48,6 @@ public class Command {
             resource.logError("Invalid query");
             return;
         }
-
         if (list.checkSequence("kk", "create", "table")) {
             list.next(2);
             createTable();
@@ -67,6 +63,9 @@ public class Command {
         } else if (list.checkSequence("k", "select")) {
             list.next();
             select();
+        } else if (list.checkSequence("k", "drop")) {
+                list.next();
+                drop();
         } else if (list.checkSequence("#"))
             ;//quite!!
         else
@@ -80,7 +79,7 @@ public class Command {
             return;//Table already exists
         String tableName=list.getCurrentToken().getText();
         if(!SQL.isValidName(tableName)){
-            resource.logError("Invalid table name : "+_(tableName));
+            resource.logError("Invalid table name "+_(tableName));
             return;
         }
         list.next();
@@ -110,7 +109,7 @@ public class Command {
             //Get param name
             String paramName=list.getCurrentToken().getText();
             if(!SQL.isValidName(paramName)) {
-                resource.logError("Invalid parameter name : "+_(paramName));
+                resource.logError("Invalid parameter name "+_(paramName));
                 return;
             }
             list.next();
@@ -119,7 +118,7 @@ public class Command {
             String typeS=list.getCurrentToken().getText();
             CellType type= AbstractCell.getCellType(typeS);
             if(type==null){
-                resource.logError("Invalid type : "+_(typeS));
+                resource.logError("Invalid type "+_(typeS));
                 return;
             }
             list.next();
@@ -178,6 +177,7 @@ public class Command {
             values=getParams();
             if(values==null) {
                 resource.logError("Invalid values");
+                System.out.println(list);
                 return;
             }
         }
@@ -212,7 +212,7 @@ public class Command {
             DataCell c=r.getCell(mParams.get(i));
             String val=values.get(i);
             if(AbstractCell.detectValueType(val)!=c.getType()) {
-                resource.logError("Incompatible type for parameter :"+(mParams.get(i).toString()));
+                resource.logError("Incompatible type for parameter "+(mParams.get(i).toString()));
                 return;
             }
             c.setValue(val);
@@ -222,16 +222,6 @@ public class Command {
         table.addRecord(r);
 
         resource.logInfo("New record added to table "+_(table.getName()));
-    }
-
-    private void deleteFrom() {
-        Table table = getTable(true);
-        if (table == null) return;
-        list.next();
-
-        Vector<Record> records=getWhere(table);
-        if(records==null)return;
-        table.deleteRecords(records);
     }
 
     private void updateFrom() {
@@ -267,7 +257,7 @@ public class Command {
             value.setValue(valueS);
             list.next();
 
-            updates.add(new Pair(param, value));
+            updates.add(new Pair<MetaCell, DataCell>(param, value));
 
             if(list.checkSequence("k","where"))
                 break;
@@ -323,7 +313,7 @@ public class Command {
             for(String paramS:paramsS) {
                 MetaCell m=table.getParam(paramS);
                 if(m==null) {//Be nice !
-                    resource.logWarning("Invalid parameter : "+_(paramS)+" and wont be selected");
+                    resource.logWarning("Invalid parameter : "+_(paramS)+" and won't be selected");
                     continue;
                 }
                 params.add(m);
@@ -343,6 +333,24 @@ public class Command {
         resource.getTables().add(t);
     }
 
+    private void deleteFrom() {
+        Table table = getTable(true);
+        if (table == null) return;
+        list.next();
+
+        Vector<Record> records=getWhere(table);
+        if(records==null)return;
+        table.deleteRecords(records);
+    }
+    
+    private void drop() {
+        Table table = getTable(true);
+        if (table == null) return;
+        list.next();
+
+        db.drop(table);
+    }
+      
     private Vector<Record> getWhere(Table table) {
         if(!list.checkSequenceAndLog("k", "where")) {
             //Accept everything !
@@ -510,4 +518,6 @@ public class Command {
     private static String _(String txt){
         return "'"+txt+"'";
     }
-
+
+}
+
