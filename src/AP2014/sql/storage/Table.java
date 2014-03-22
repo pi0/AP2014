@@ -1,5 +1,6 @@
 package AP2014.sql.storage;
 
+import AP2014.sql.storage.cell.AbstractCell;
 import AP2014.sql.storage.cell.DataCell;
 import AP2014.sql.storage.cell.MetaCell;
 import com.bethecoder.ascii_table.ASCIITable;
@@ -88,4 +89,26 @@ public class Table {
         t.append(table.getTable(header, rows));
         return t.toString();
     }
+
+	public String dump() {
+		StringBuilder sb=new StringBuilder();
+		
+		sb.append("# Table : "+getName());
+		sb.append("\n##\n");
+		
+		sb.append("create table '"+getName()+"' (");
+		
+		for(MetaCell m:getParams())
+			sb.append(String.format("'%s' %s %d,", m.getName(),
+					AbstractCell.getCellType(m.getType()),m.getMaxValue()));
+		sb.replace(sb.length()-1, sb.length(), ");\n");
+		
+		
+		for(Record record:records) {
+			sb.append(record.dump(this));
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
 }

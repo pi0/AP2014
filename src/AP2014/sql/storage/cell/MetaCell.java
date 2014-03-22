@@ -9,6 +9,10 @@ public class MetaCell extends AbstractCell {
     public DataCell createCell() {
         return new DataCell(paramName,value,maxValue,type);
     }
+    
+    public int getMaxValue() {
+    	return maxValue;
+    }
 
     @Override
     public String toString() {

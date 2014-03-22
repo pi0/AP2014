@@ -1,16 +1,19 @@
 package AP2014.sql;
 
 import AP2014.io.Utils;
-import AP2014.sql.command.token.TokenList;
 import java.io.File;
 import java.io.IOException;
 
 public class SQLApp {
 
     public static void main(String[] args) throws IOException {
-        TokenList l=new TokenList("insert into 'into' (a,b,c)",new Resource());
-        System.out.println(l);
-     /*
         SQL sql=new SQL();
         Resource r=sql.query(Utils.readAllFile
-                (ne
+                (new File("src\\AP2014\\sql\\testQuery.txt")));
+        //r.dump(System.out);
+        System.out.println(sql.getDb().getTable("boo").toString());
+        System.out.println(sql.dumpDB());
+        
+    }
+
+}

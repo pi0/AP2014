@@ -10,7 +10,7 @@ enum TokenItemType {
 public class TokenItem {
 
 	static final String symbolRegex="[\\*()<>#=;,]";
-    static final String valueRegex="'.*?'|\".*?\"|[a-zA-Z0-9_\\.]+";
+    static final String valueRegex="'.*?'|\".*?\"|[a-zA-Z0-9\\-_\\.]+";
     static final String keywordRegex;
     static final String[] validKeywords={
         "create","table","drop","insert","update","into",
@@ -41,7 +41,6 @@ public class TokenItem {
             this.text=text.replaceAll("^['\"]|['\"]$", "");
         }
         else this.type=TokenItemType.TOKEN_ITEM_TYPE_INVALID;
-
     }
 
     public String getText() {
@@ -62,13 +61,13 @@ public class TokenItem {
     */
 
     public String toString() {
-    	//return text;
-    	
-        String typeStr="";
+        String typeStr;
         switch (type) {
             case TOKEN_ITEM_TYPE_KEYWORD:typeStr="keyword";break;
             case TOKEN_ITEM_TYPE_SYMBOL:typeStr="symbol";break;
             case TOKEN_ITEM_TYPE_VALUE:typeStr="value";break;
             default: typeStr="??";
         }
-        return typeStr
+        return typeStr+" '"+getText()+"' ";
+    }
+}

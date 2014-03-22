@@ -1,4 +1,6 @@
-create table boo ( name string , family string , score float , age int )
-insert into boo values ( pedram , parsa , 17.0 , 15 )
-insert into boo values ( pooya , parsa , 20.0 , 20 )
-insert into boo values ( gholi , parsa , 18.0 , 20 )
+# Table : boo
+##
+create table 'boo' ('name' string -1,'family' string -1,'score' float -1,'age' int -1);
+insert into 'boo' values(pedram,parsa,17.0,15);
+insert into 'boo' values(pooya,parsa,20.0,20);
+insert into 'boo' values(gholi,parsa,18.0,20);

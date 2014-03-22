@@ -22,15 +22,21 @@ public class Record{
         return null;
     }
 
-    public void update(Pair<MetaCell,DataCell> p) {
+    public boolean update(Pair<MetaCell,DataCell> p) {
         DataCell c=getCell(p.getKey());
-        if(c!=null)
+        if(c!=null) {
             c.setValue(p.getValue().getValue().toString());
+            return true;
+        }
+        return false;
     }
 
-    public void update(Vector<Pair<MetaCell,DataCell>> l){
+    public boolean update(Vector<Pair<MetaCell,DataCell>> l){
+    	boolean state=true;
         for (Pair<MetaCell,DataCell> p:l)
-            update(p);
+            if(!update(p))
+            	state=false;
+        return state;
     }
 
     public String[] toStringArr() {
@@ -38,6 +44,22 @@ public class Record{
         for(int i=0;i<c.length;i++)
             c[i]=cells.get(i).toString();
         return c;
+    }
+    
+    public String dump(Table parent) {
+    	StringBuilder sb=new StringBuilder();
+    	sb.append("insert into '"+parent.getName()+"'");
+    	
+    	if(cells.size()>0) {
+	    	sb.append(" values(");
+	    	for(DataCell cell:cells) {
+	    		sb.append(cell.getValue().toString());
+	    		sb.append(",");
+	    	}
+	    	sb.replace(sb.length()-1, sb.length(), ");");
+    	}
+    	
+    	return sb.toString();
     }
 
 }

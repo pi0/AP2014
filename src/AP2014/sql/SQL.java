@@ -2,9 +2,6 @@ package AP2014.sql;
 
 import AP2014.sql.command.Command;
 import AP2014.sql.storage.Database;
-
-import java.util.Vector;
-
 public class SQL {
 
     private Database db;
@@ -25,4 +22,11 @@ public class SQL {
     public Resource query(String query) {
         Resource r=new Resource();
         Command.query(query,db,r);
- 
+        return r;
+    }
+    
+    public String dumpDB() {
+    	return db.dump();
+    }
+
+}
