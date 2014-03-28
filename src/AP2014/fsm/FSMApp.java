@@ -2,7 +2,6 @@ package AP2014.fsm;
 
 import AP2014.fsm.testapps.DigitFSM;
 import AP2014.io.Utils;
-import org.apache.xml.resolver.apps.resolver;
 
 import java.io.File;
 import java.io.IOException;

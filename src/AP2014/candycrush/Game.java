@@ -22,11 +22,9 @@ public class Game {
     }
 
     public void Start() {
-        board.setLevel(1);
+        board.setLevel(level);
         board.newGame();
-
         gameWindow.setVisible(true);
-
     }
 
 

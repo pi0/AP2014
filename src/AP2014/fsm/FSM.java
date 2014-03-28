@@ -1,11 +1,6 @@
 package AP2014.fsm;
 
-import AP2014.io.Utils;
-
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 
 public class FSM {
 

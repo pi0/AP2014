@@ -57,6 +57,4 @@ class Block {
     }
 
     public boolean isJoinableWith(Block b){
-        return (b.getValue()==getValue());
-    }
-}
+        retu

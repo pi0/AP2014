@@ -34,7 +34,6 @@ public class Answer {
             if(segment.isCorrect)
                 correct++;
         this.score=(double)correct/total;
-
     }
 
     public void checkCopy(Answer ans) {
@@ -84,13 +83,15 @@ class AnswerSegment {
         this.text = text;
     }
 
+    
     void check(AnswerSegment ref) {
         refText = ref.text;
         if(ref!=null)
             isCorrect = (text.equals(refText));
-        else
-            isCorrect=false;
+        //else
+          //  isCorrect=false;
     }
+    
 
     @Override
     public String toString() {

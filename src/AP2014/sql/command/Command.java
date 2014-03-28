@@ -48,6 +48,7 @@ public class Command {
             resource.logError("Invalid query");
             return;
         }
+
         if (list.checkSequence("kk", "create", "table")) {
             list.next(2);
             createTable();

@@ -39,8 +39,6 @@ public class TokenList {
                 break;//Don't continue!
             }
         }
-
-
     }
 
     public boolean isValid() {
@@ -164,3 +162,5 @@ public class TokenList {
         else return "[empty]";
     }
 }
+
+

@@ -283,8 +283,4 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
-    }
-}
-
-
+    public void mouseMoved(M
