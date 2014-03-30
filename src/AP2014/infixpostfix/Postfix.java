@@ -10,7 +10,7 @@ public class Postfix {
         Pattern pattern=Pattern.compile(matcherRegex);
         String[] matches=pattern.split(eq);
         for(String m:matches)
-            System.out.println(m);
+           System.out.println(m);
     }
 
 }
