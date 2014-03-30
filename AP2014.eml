@@ -2,9 +2,6 @@
 <component inheritJdk="true">
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$"/>
-	<lib name="btc-ascii-table-1.0.jar" scope="COMPILE">
-		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/btc-ascii-table-1.0.jar!/"/>
-	</lib>
 	<levels>
 		<level name="lib" value="project"/>
 	</levels>
