@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2553f937-1e72-4abd-b0d3-fe067f0d71ff" name="Default" comment="using bt-ascii-table sources instead">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AP2014.eml" afterPath="$PROJECT_DIR$/AP2014.eml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="2553f937-1e72-4abd-b0d3-fe067f0d71ff" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AP2014.iws" />
@@ -946,7 +942,7 @@
       <workItem from="1396161132863" duration="193000" />
       <workItem from="1396162967211" duration="63000" />
       <workItem from="1396163049936" duration="502000" />
-      <workItem from="1396163568523" duration="1647000" />
+      <workItem from="1396163568523" duration="1666000" />
     </task>
     <task id="LOCAL-00001" summary="using bt-ascii-table sources instead">
       <created>1396165423041</created>
@@ -956,11 +952,15 @@
       <created>1396165479913</created>
       <updated>1396165479914</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="using bt-ascii-table sources instead">
+      <created>1396165500118</created>
+      <updated>1396165500118</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="200084000" />
+    <option name="totallyTimeSpent" value="200103000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1032,9 +1032,9 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="using bt-ascii-table sources instead" />
     <MESSAGE value="some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
+    <MESSAGE value="using bt-ascii-table sources instead" />
+    <option name="LAST_COMMIT_MESSAGE" value="using bt-ascii-table sources instead" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
