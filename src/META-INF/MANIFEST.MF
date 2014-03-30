@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: AP2014.candycrush.CandyCrush
-

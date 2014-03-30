@@ -11,7 +11,9 @@ import java.util.*;
 
 public class GameBoard extends JPanel implements MouseListener, MouseMotionListener {
 
-    private final static int spacer = 5;
+	private static final long serialVersionUID = 8369084705122293774L;
+	
+	private final static int spacer = 5;
     private final static int blockWidth = 30;
     private final static int blockHeight = 30;
     private Block[][] blocks;
@@ -32,7 +34,6 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
         addMouseListener(this);
         addMouseMotionListener(this);
         timer=new Timer(100,new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 elapsedTime+=timer.getDelay();
                 if(elapsedTime>totalTime){
@@ -78,8 +79,9 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
         for (int c = 0; c < getCols(); c++)
             for (int r = 0; r < getRows(); r++) {
                 if (blocks[c][r] == null) {
-                    //TODO :check for not connected more that 3 blocks
+                    do{
                     blocks[c][r] = new Block((char) ('a' + random.nextInt('j' - 'a')), c, r);
+                    } while(getConnectedBlocks(blocks[c][r]).length>=3);
                 }
             }
         repaint();
@@ -115,6 +117,7 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
                         b.setY(b.getY()+1);
                         blocks[c][r] = null;
                         changed = true;
+
                     }
                 }
             }
@@ -131,10 +134,10 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
 
         final int[][][] directions = {{{-1, 0}, {+1, 0}}, {{0, -1}, {0, +1}}};
 
-        Vector<Block> connectedBlocks = new Vector();
+        Vector<Block> connectedBlocks = new Vector<Block>();
 
         for (int[][] direction : directions) {
-            Vector<Block> dirConnectedBlocks = new Vector();
+            Vector<Block> dirConnectedBlocks = new Vector<Block>();
             for (int[] delta : direction) {
                 int c = b.getX() + delta[0];
                 int r = b.getY() + delta[1];
@@ -221,19 +224,14 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
 
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
+    public void mouseClicked(MouseEvent e) {}
 
-    @Override
     public void mousePressed(MouseEvent e) {
         selectedBlock1 = getBlock(e.getX(), e.getY());
         repaint();
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
-
         if (selectedBlock2 != null && selectedBlock1 != null)
             swapBlocks(selectedBlock1, selectedBlock2);
 
@@ -241,12 +239,10 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
         repaint();
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
         timer.start();
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
         timer.stop();
     }
@@ -264,7 +260,7 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
         return region;
     }
 
-    @Override
+
     public void mouseDragged(MouseEvent e) {
         if (selectedBlock1 != null) {
             selectedBlock2 = getBlock(e.getX(), e.getY());
@@ -282,5 +278,7 @@ public class GameBoard extends JPanel implements MouseListener, MouseMotionListe
         }
     }
 
-    @Override
-    public void mouseMoved(M
+    public void mouseMoved(MouseEvent e) {}
+}
+
+

@@ -60,10 +60,10 @@ public class FSM {
                 invokeAction("s_" + currentState.getName(), i);
             }
             else {
-                //It's end of the line bro!
+                //It's end of the line , bro!
                 if(currentState.isFinalState()) {
-                    invokeAction("finish_" + currentState.getName(), i);
-                    invokeAction("finish", currentState.getName());
+                    invokeAction("final_" + currentState.getName(), i);
+                    invokeAction("final_", currentState.getName());
                     return true;
                 } else {
                     invokeAction("error_" + currentState.getName(), i);
