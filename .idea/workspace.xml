@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2553f937-1e72-4abd-b0d3-fe067f0d71ff" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\@Data\Code\Cloned\MyRepos\AP2014\src\AP2014\infixpostfix\Main.java" afterPath="$PROJECT_DIR$/src/AP2014/infixpostfix/InfixPostFixApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/examcheck/Answer.java" afterPath="$PROJECT_DIR$/src/AP2014/examcheck/Answer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java" afterPath="$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/infixpostfix/Postfix.java" afterPath="$PROJECT_DIR$/src/AP2014/infixpostfix/Postfix.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/regexlab/RegexChecker.java" afterPath="$PROJECT_DIR$/src/AP2014/regexlab/RegexChecker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/examcheck/StudentExam.java" afterPath="$PROJECT_DIR$/src/AP2014/examcheck/StudentExam.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AP2014.iws" />
@@ -951,7 +945,7 @@
       <workItem from="1396163568523" duration="8527000" />
       <workItem from="1396194722351" duration="18412000" />
       <workItem from="1396275119040" duration="1316000" />
-      <workItem from="1396590316350" duration="5465000" />
+      <workItem from="1396590316350" duration="5509000" />
     </task>
     <task id="LOCAL-00001" summary="using bt-ascii-table sources instead">
       <created>1396165423041</created>
@@ -969,11 +963,15 @@
       <created>1396165514559</created>
       <updated>1396165514559</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="some fixes">
+      <created>1396631804719</created>
+      <updated>1396631804719</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232157000" />
+    <option name="totallyTimeSpent" value="232201000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1045,9 +1043,9 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="some fixes" />
     <MESSAGE value="using bt-ascii-table sources instead" />
-    <option name="LAST_COMMIT_MESSAGE" value="using bt-ascii-table sources instead" />
+    <MESSAGE value="some fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
