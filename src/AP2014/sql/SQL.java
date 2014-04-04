@@ -11,8 +11,8 @@ public class SQL {
     }
 
     public static boolean isValidName(String name) {
-        return (name.matches("^[a-zA-Z]\\w*$") &&
-              !(name.matches("\\d{3,}")));//TODO : why doesn't works ?!
+        return (name.matches("[a-zA-Z]\\w*") &&
+                (!(name.matches("\\d{3,}"))) );
     }
 
     public Database getDb() {
