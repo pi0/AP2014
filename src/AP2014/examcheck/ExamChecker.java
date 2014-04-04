@@ -23,6 +23,8 @@ public class ExamChecker {
 
     public void checkAll() throws IOException{
 
+        studentExams=new Vector<StudentExam>();
+
         //Read correct answers file
 
         this.refAnswers = new StudentExam("",new File

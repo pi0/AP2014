@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2553f937-1e72-4abd-b0d3-fe067f0d71ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java" afterPath="$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AP2014.iws" />
@@ -86,7 +87,87 @@
     <favorites_list name="AP2014" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="StudentExam.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/StudentExam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1562">
+              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JAVA/AP2014.examcheck" pinned="false" current="false" current-in-tab="false">
+        <entry file="uml://JAVA/AP2014.examcheck">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement>AP2014.examcheck</OriginalElement>
+              <nodes>
+                <node x="113.5" y="-36.5">AP2014.examcheck.ExamCheckerApp</node>
+                <node x="927.0" y="667.5">AP2014.examcheck.AnswerSegment</node>
+                <node x="42.5" y="325.0">AP2014.examcheck.StudentExam</node>
+                <node x="509.5" y="656.0">AP2014.examcheck.Answer</node>
+                <node x="-21.5" y="985.5">AP2014.examcheck.example</node>
+                <node x="97.0" y="89.0">AP2014.examcheck.ExamChecker</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.StudentExam">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.StudentExam">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="AP2014.examcheck.StudentExam" target="AP2014.examcheck.Answer">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.Answer">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.AnswerSegment">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+                <edge source="AP2014.examcheck.ExamCheckerApp" target="AP2014.examcheck.ExamChecker">
+                  <point x="0.0" y="0.0" />
+                  <point x="0.0" y="0.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="1.0" x="81.0" y="280.0" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Constructors</Category>
+                <Category>Fields</Category>
+                <Category>Methods</Category>
+                <Category>Properties</Category>
+                <Category>Inner Classes</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>private</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Answer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/Answer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40369967" vertical-offset="1455" max-vertical-offset="2420">
+              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+              <folding>
+                <element signature="e#2045#2046#0" expanded="true" />
+                <element signature="e#2077#2078#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -110,7 +191,6 @@
         <option value="$PROJECT_DIR$/src/AP2014/fsm/FSMState.java" />
         <option value="$PROJECT_DIR$/src/AP2014/fsm/FSMApp.java" />
         <option value="$PROJECT_DIR$/src/AP2014/io/Utils.java" />
-        <option value="$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/ConditionNode.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/cell/Param.java" />
         <option value="$PROJECT_DIR$/src/AP2014/sql/storage/cell/Value.java" />
@@ -150,6 +230,7 @@
         <option value="$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java" />
         <option value="$PROJECT_DIR$/src/AP2014/examcheck/Answer.java" />
         <option value="$PROJECT_DIR$/src/AP2014/examcheck/StudentExam.java" />
+        <option value="$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java" />
       </list>
     </option>
   </component>
@@ -458,7 +539,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="LayoutCode.rearrangeEntriesJava" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../tmp/JumongGame" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/AP2014/examcheck" />
     <property name="TODO_SCOPE" value="All" />
     <property name="FullScreen" value="false" />
   </component>
@@ -945,7 +1026,7 @@
       <workItem from="1396163568523" duration="8527000" />
       <workItem from="1396194722351" duration="18412000" />
       <workItem from="1396275119040" duration="1316000" />
-      <workItem from="1396590316350" duration="5509000" />
+      <workItem from="1396590316350" duration="6381000" />
     </task>
     <task id="LOCAL-00001" summary="using bt-ascii-table sources instead">
       <created>1396165423041</created>
@@ -967,11 +1048,15 @@
       <created>1396631804719</created>
       <updated>1396631804719</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="some fixes">
+      <created>1396631829708</created>
+      <updated>1396631829708</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232201000" />
+    <option name="totallyTimeSpent" value="233073000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -995,7 +1080,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946146" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1005,7 +1090,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31145832" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31145832" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984252" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20058565" sideWeight="0.50078493" order="3" side_tool="true" content_ui="tabs" />
@@ -1017,8 +1102,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329429" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1640625" sideWeight="0.49921507" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31822917" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" x="717" y="117" width="576" height="630" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1640625" sideWeight="0.49921507" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31822917" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" x="717" y="117" width="576" height="630" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1057,44 +1142,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AP2014/sql/sql.uml">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JAVA</ID>
-          <OriginalElement>AP2014.sql</OriginalElement>
-          <nodes>
-            <node x="-15.174708818635565" y="146.74209650582364">AP2014.sql.Param.ParamType</node>
-            <node x="0.0" y="479.0">AP2014.sql.Record</node>
-            <node x="0.0" y="278.0">AP2014.sql.Database</node>
-            <node x="306.0" y="479.0">AP2014.sql.Command</node>
-            <node x="-497.6870631916137" y="31.838417297612125">AP2014.sql.SQL</node>
-            <node x="263.0" y="278.0">AP2014.sql.Table</node>
-            <node x="437.0" y="479.0">AP2014.sql.Value</node>
-            <node x="16.0" y="0.0">AP2014.sql.Param</node>
-          </nodes>
-          <notes />
-          <edges>
-            <edge source="AP2014.sql.Param.ParamType" target="AP2014.sql.Param">
-              <point x="0.0" y="-45.5" />
-              <point x="0.0" y="46.0" />
-            </edge>
-          </edges>
-          <settings layout="Hierarchic Group" zoom="0.6543859649122805" x="55.0" y="329.0" />
-          <SelectedNodes>
-            <node>AP2014.sql.SQL</node>
-          </SelectedNodes>
-          <Categories>
-            <Category>Constructors</Category>
-            <Category>Fields</Category>
-            <Category>Methods</Category>
-            <Category>Inner Classes</Category>
-            <Category>Properties</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>private</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/sql/sql.uml">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1507,26 +1554,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.047878128" vertical-offset="264" max-vertical-offset="1386">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/example/c.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="919">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/Answer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19151251" vertical-offset="0" max-vertical-offset="2376">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1539,19 +1570,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/ExamCheckerApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1386">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/ExamChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86180633" vertical-offset="0" max-vertical-offset="1210">
-          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.64635473" vertical-offset="0" max-vertical-offset="1254">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/StudentExam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5745375" vertical-offset="616" max-vertical-offset="1562">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1562">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/AP2014.examcheck">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>AP2014.examcheck</OriginalElement>
+          <nodes>
+            <node x="113.5" y="-36.5">AP2014.examcheck.ExamCheckerApp</node>
+            <node x="927.0" y="667.5">AP2014.examcheck.AnswerSegment</node>
+            <node x="42.5" y="325.0">AP2014.examcheck.StudentExam</node>
+            <node x="509.5" y="656.0">AP2014.examcheck.Answer</node>
+            <node x="-21.5" y="985.5">AP2014.examcheck.example</node>
+            <node x="97.0" y="89.0">AP2014.examcheck.ExamChecker</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.StudentExam">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.StudentExam">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="AP2014.examcheck.StudentExam" target="AP2014.examcheck.Answer">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.Answer">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.AnswerSegment">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+            <edge source="AP2014.examcheck.ExamCheckerApp" target="AP2014.examcheck.ExamChecker">
+              <point x="0.0" y="0.0" />
+              <point x="0.0" y="0.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="81.0" y="280.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Constructors</Category>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+            <Category>Properties</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AP2014/examcheck/Answer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40369967" vertical-offset="1455" max-vertical-offset="2420">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding>
+            <element signature="e#2045#2046#0" expanded="true" />
+            <element signature="e#2077#2078#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
