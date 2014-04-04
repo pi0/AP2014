@@ -6,7 +6,16 @@ public class ExamCheckerApp {
 
     public static void main(String[] args) {
         try{
-        new ExamCheckerApp().Run("C:\\a\\exam");
+
+            String stdFile;
+
+            if(args.length>0)
+                stdFile=args[0];
+            else
+                stdFile="src/AP2014/examcheck/example";
+
+            new ExamCheckerApp().Run(stdFile);
+
         }catch (Exception e) {
             System.err.print("Error: "+e.getMessage());
         }
@@ -17,7 +26,8 @@ public class ExamCheckerApp {
         //Initialize
 
         File baseDirFile=new File(baseDir);
-
+        if(!baseDirFile.exists())
+            throw new Exception("File not found");
         if(!baseDirFile.canRead() || !baseDirFile.canWrite())
             throw  new Exception("Permission denied!");
         if(!baseDirFile.isDirectory())

@@ -14,7 +14,7 @@ public class Answer {
         this.copiedFrom = new Vector<StudentExam>();
         this.author=author;
 
-        String[] segmentsStr = text.split("\\b\\b+");
+        String[] segmentsStr = text.split("\\b+");
         segments = new AnswerSegment[segmentsStr.length];
         for (int i = 0; i < segments.length; i++)
             segments[i] = new AnswerSegment(segmentsStr[i].toLowerCase());
@@ -59,11 +59,12 @@ public class Answer {
 
         String r = "";
         for (AnswerSegment segment : segments)
-            r += segment + "/";
+            if(segment.toString().length()>0)
+                r += segment + " ";
 
         boolean copied=(copiedFrom.size()>0);
 
-        r+=(copied?"Y/":"N");
+        r+=(copied?" accomplices :":"");
 
         for (StudentExam studentExam : copiedFrom)
             r += studentExam.getID()+",";
@@ -98,7 +99,7 @@ class AnswerSegment {
         if(isCorrect)
             return "";//"T";
         else
-            return ("F" + "(" + refText + "-" + text+")");
+            return "(" + refText + "-" + text+")";
     }
 
     @Override

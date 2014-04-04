@@ -59,14 +59,14 @@ public class StudentExam {
 
     @Override
     public String toString() {
-        String s="";
+        String s=ID+":\r\n";
         double total=0;
         for(Answer answer:answers) {
             s+=answer+"\r\n";
             total+=answer.getScore();
         }
 
-        s+=Math.round((total/answers.length)*100)+"\n";
+        s+="Score:"+Math.round((total/answers.length)*100)+"/100\r\n";
 
         return s;
     }
