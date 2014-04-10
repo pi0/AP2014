@@ -49,10 +49,12 @@ public class ContactsView extends JFrame {
 
         contactsTable = new JTable(contacts);
         contactsTable.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+
         DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
         rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
         for (int i = 0; i < contacts.getColumnCount(); i++)
             contactsTable.getColumnModel().getColumn(i).setCellRenderer(rightRenderer);
+
         contactPopup = new JPopupMenu("مخاطب");
         contactPopupEdit = new JMenuItem("ویرایش");
         contactPopupRemove = new JMenuItem("حذف");

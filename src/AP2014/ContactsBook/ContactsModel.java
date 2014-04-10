@@ -45,8 +45,10 @@ public class ContactsModel implements TableModel {
     }
 
     public void updateAllRows() {
-        for (int i = 0; i < contacts.size(); i++)
-            updateRow(i);
+        TableModelEvent e = new TableModelEvent(this, 0, getRowCount());
+        for (TableModelListener listener : listeners)
+            listener.tableChanged(e);
+        cache.clear();
     }
 
     public ContactModel getRow(int index) {
