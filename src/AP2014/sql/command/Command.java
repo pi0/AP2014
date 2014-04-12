@@ -1,6 +1,9 @@
 package AP2014.sql.command;
 
 import javafx.util.Pair;
+
+import java.awt.*;
+import java.util.Stack;
 import java.util.Vector;
 import AP2014.sql.SQL;
 import AP2014.sql.Resource;
@@ -374,12 +377,19 @@ public class Command {
 
     private ConditionNode getCondition(TokenList l) {
 
-        ConditionNode a=readCondition(l);
+        //Postfix to infix
 
-        if(l.isEndOfList())
-            return a;
+        Stack<OperatorType> operatorsStack=new Stack<OperatorType>();
+        Vector<Object> postfix=new Stack<Object>();
 
-        else{
+        while (!l.isEndOfList()) {
+
+            ConditionNode a=readCondition(l);
+            postfix.add(a);
+
+            if(l.isEndOfList())
+                break;
+
             OperatorType ot=null;
             if(l.checkSequence("k","or"))
                 ot=OperatorType.OPERATOR_TYPE_OR;
@@ -389,16 +399,35 @@ public class Command {
                 resource.logError("Invalid operator");
                 return null;
             }
+            postfix.add(ot);
 
-            OperatorNode c=new OperatorNode(ot);
-            c.addChild(a);
-            l.next();
-            ConditionNode b=getCondition(l);
-            if(b==null)
-                return null;
-            c.addChild(b);
-            return c;
+            while(!operatorsStack.isEmpty() &&
+                    operatorsStack.peek()!=
+                            OperatorType.OPERATOR_TYPE_AND) {
+                postfix.add(operatorsStack.pop());
+            }
         }
+        while(!operatorsStack.isEmpty())
+            postfix.add(operatorsStack.pop());
+
+        Stack<ConditionNode> conditionNodes=
+                new Stack<ConditionNode>();
+
+        for(Object curr:postfix) {
+
+            if(curr instanceof ConditionNode) {
+                conditionNodes.push((ConditionNode)curr);
+            } else {
+                OperatorType ot=(OperatorType)(curr);
+                ConditionNode a=conditionNodes.pop();
+                ConditionNode b=conditionNodes.pop();
+
+
+            }
+
+        }
+
+        return null;
     }
 
     private ConditionNode readCondition(TokenList l) {
