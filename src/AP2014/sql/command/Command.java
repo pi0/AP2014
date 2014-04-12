@@ -2,8 +2,6 @@ package AP2014.sql.command;
 
 import javafx.util.Pair;
 
-import java.awt.*;
-import java.util.Stack;
 import java.util.Vector;
 import AP2014.sql.SQL;
 import AP2014.sql.Resource;
@@ -83,7 +81,7 @@ public class Command {
             return;//Table already exists
         String tableName=list.getCurrentToken().getText();
         if(!SQL.isValidName(tableName)){
-            resource.logError("Invalid table name "+_(tableName));
+            resource.logError("Invalid table name "+ __(tableName));
             return;
         }
         list.next();
@@ -113,7 +111,7 @@ public class Command {
             //Get param name
             String paramName=list.getCurrentToken().getText();
             if(!SQL.isValidName(paramName)) {
-                resource.logError("Invalid parameter name "+_(paramName));
+                resource.logError("Invalid parameter name "+ __(paramName));
                 return;
             }
             list.next();
@@ -122,7 +120,7 @@ public class Command {
             String typeS=list.getCurrentToken().getText();
             CellType type= AbstractCell.getCellType(typeS);
             if(type==null){
-                resource.logError("Invalid type "+_(typeS));
+                resource.logError("Invalid type "+ __(typeS));
                 return;
             }
             list.next();
@@ -193,7 +191,7 @@ public class Command {
             for(String param:params) {
                 MetaCell m=table.getParam(param);
                 if(m==null){
-                    resource.logError("Invalid parameter : "+_(param));
+                    resource.logError("Invalid parameter : "+ __(param));
                     return;
                 }
                 mParams.add(m);
@@ -225,7 +223,7 @@ public class Command {
         //Add it to table
         table.addRecord(r);
 
-        resource.logInfo("New record added to table "+_(table.getName()));
+        resource.logInfo("New record added to table "+ __(table.getName()));
     }
 
     private void updateFrom() {
@@ -246,7 +244,7 @@ public class Command {
             String paramS=list.getCurrentToken().getText();
             MetaCell param=table.getParam(paramS);
             if(param==null) {
-                resource.logError("Invalid parameter : "+_(paramS));
+                resource.logError("Invalid parameter : "+ __(paramS));
                 return;
             }
             list.next(2);
@@ -317,7 +315,7 @@ public class Command {
             for(String paramS:paramsS) {
                 MetaCell m=table.getParam(paramS);
                 if(m==null) {//Be nice !
-                    resource.logWarning("Invalid parameter : "+_(paramS)+" and won't be selected");
+                    resource.logWarning("Invalid parameter : "+ __(paramS)+" and won't be selected");
                     continue;
                 }
                 params.add(m);
@@ -377,57 +375,45 @@ public class Command {
 
     private ConditionNode getCondition(TokenList l) {
 
-        //Postfix to infix
+        boolean andSeen=false;
+        OperatorNode root=new OperatorNode
+                (OperatorType.OPERATOR_TYPE_OR);
 
-        Stack<OperatorType> operatorsStack=new Stack<OperatorType>();
-        Vector<Object> postfix=new Stack<Object>();
+        ConditionNode n = readCondition(l);
 
         while (!l.isEndOfList()) {
 
-            ConditionNode a=readCondition(l);
-            postfix.add(a);
+            ConditionNode n2= readCondition(l);
 
-            if(l.isEndOfList())
+            if(andSeen) {
+                OperatorNode and=new OperatorNode
+                        (OperatorType.OPERATOR_TYPE_AND);
+                and.addChild(n);
+                and.addChild(n2);
+                root.addChild(and);
+            } else
+                root.addChild(n2);
+
+            if (l.isEndOfList())
                 break;
 
-            OperatorType ot=null;
-            if(l.checkSequence("k","or"))
-                ot=OperatorType.OPERATOR_TYPE_OR;
-            else if(l.checkSequence("k", "and"))
-                ot=OperatorType.OPERATOR_TYPE_AND;
-            if(ot==null) {
+            OperatorType ot = null;
+            if (l.checkSequence("k", "or"))
+                ot = OperatorType.OPERATOR_TYPE_OR;
+            else if (l.checkSequence("k", "and"))
+                ot = OperatorType.OPERATOR_TYPE_AND;
+            if (ot == null) {
                 resource.logError("Invalid operator");
                 return null;
             }
-            postfix.add(ot);
+            l.next();
 
-            while(!operatorsStack.isEmpty() &&
-                    operatorsStack.peek()!=
-                            OperatorType.OPERATOR_TYPE_AND) {
-                postfix.add(operatorsStack.pop());
-            }
+            if(ot==OperatorType.OPERATOR_TYPE_AND)
+                andSeen=true;
+            else
+                andSeen=false;
         }
-        while(!operatorsStack.isEmpty())
-            postfix.add(operatorsStack.pop());
-
-        Stack<ConditionNode> conditionNodes=
-                new Stack<ConditionNode>();
-
-        for(Object curr:postfix) {
-
-            if(curr instanceof ConditionNode) {
-                conditionNodes.push((ConditionNode)curr);
-            } else {
-                OperatorType ot=(OperatorType)(curr);
-                ConditionNode a=conditionNodes.pop();
-                ConditionNode b=conditionNodes.pop();
-
-
-            }
-
-        }
-
-        return null;
+        return root;
     }
 
     private ConditionNode readCondition(TokenList l) {
@@ -459,8 +445,8 @@ public class Command {
             //Get from table
             MetaCell param=currentTable.getParam(a);
             if(param==null) {
-                resource.logError("Parameter "+_(a)+
-                        " doesn't exists in table "+_(currentTable.getName()));
+                resource.logError("Parameter "+ __(a)+
+                        " doesn't exists in table "+ __(currentTable.getName()));
                 return null;
             }
             DataCell paramVal=param.createCell();
@@ -487,7 +473,7 @@ public class Command {
             if(shouldExist == (table!=null))
                 return table;
             else
-                resource.logError("Table "+_(list.getCurrentToken().getText())+
+                resource.logError("Table "+ __(list.getCurrentToken().getText())+
                         (shouldExist?"not found":"already exists"));
         }
         return null;
@@ -545,7 +531,7 @@ public class Command {
         return params;
     }
 
-    private static String _(String txt){
+    private static String __(String txt){
         return "'"+txt+"'";
     }
 
