@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>AP2014.examcheck</OriginalElement>
+  <nodes>
+    <node x="113.5" y="-36.5">AP2014.examcheck.ExamCheckerApp</node>
+    <node x="927.0" y="667.5">AP2014.examcheck.AnswerSegment</node>
+    <node x="42.5" y="325.0">AP2014.examcheck.StudentExam</node>
+    <node x="509.5" y="656.0">AP2014.examcheck.Answer</node>
+    <node x="-21.5" y="985.5">AP2014.examcheck.example</node>
+    <node x="97.0" y="89.0">AP2014.examcheck.ExamChecker</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.StudentExam">
+      <point x="-80.0" y="-104.0" />
+      <point x="600.0" y="600.0" />
+      <point x="240.0" y="600.0" />
+      <point x="40.0" y="115.0" />
+    </edge>
+    <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.StudentExam">
+      <point x="0.0" y="71.0" />
+      <point x="0.0" y="-115.0" />
+    </edge>
+    <edge source="AP2014.examcheck.ExamChecker" target="AP2014.examcheck.Answer">
+      <point x="103.0" y="0.0" />
+      <point x="680.0" y="160.0" />
+      <point x="0.0" y="-104.0" />
+    </edge>
+    <edge source="AP2014.examcheck.StudentExam" target="AP2014.examcheck.Answer">
+      <point x="-157.5" y="0.0" />
+      <point x="0.0" y="440.0" />
+      <point x="0.0" y="760.0" />
+      <point x="-170.5" y="0.0" />
+    </edge>
+    <edge source="AP2014.examcheck.Answer" target="AP2014.examcheck.AnswerSegment">
+      <point x="0.0" y="104.0" />
+      <point x="680.0" y="920.0" />
+      <point x="1040.0" y="920.0" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="AP2014.examcheck.ExamCheckerApp" target="AP2014.examcheck.ExamChecker">
+      <point x="0.0" y="36.5" />
+      <point x="0.0" y="-71.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="393.0" y="546.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
