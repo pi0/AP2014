@@ -178,6 +178,22 @@ public class StartGame extends JDialog {
     }
 
 
+    public int rows() {
+        return Integer.parseInt(fRows.getText());
+    }
+
+    public int cols() {
+        return Integer.parseInt(fCols.getText());
+    }
+
+
+    public int mines() {
+        return Integer.parseInt(fMines.getText());
+    }
+
+
+
+
     public boolean open() {
         setVisible(true);
         return status;
