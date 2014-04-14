@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Smilli extends JButton {
 
     public Smilli() {
-        setSize(24,24);
+        setSize(24, 24);
 
         setBackground(null);
         setBorder(null);

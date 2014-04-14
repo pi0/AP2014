@@ -8,37 +8,30 @@ import java.awt.event.MouseEvent;
 public class Block extends JButton {
 
     public static final int DISPLAY_STATE_NORMAL = 0;
-    public static final int DISPLAY_STATE_FLAG = 1;
-    public static final int DISPLAY_STATE_QUESTION = 2;
-
     private int displayState =
             DISPLAY_STATE_NORMAL;
-
-    private int displayStateCount;
-
-    private int bombs = 0;
-    private boolean bomb = false;
-
-    public static final int BOMB_STATE_NOTFOUND=4;
-    public static final int BOMB_STATE_FOUND=3;
-    public static final int BOMB_STATE_BOOM=2;
-
+    public static final int DISPLAY_STATE_FLAG = 1;
+    public static final int DISPLAY_STATE_QUESTION = 2;
+    public static final int BOMB_STATE_NOTFOUND = 4;
     private int bombState =
             BOMB_STATE_NOTFOUND;
+    public static final int BOMB_STATE_FOUND = 3;
+    public static final int BOMB_STATE_BOOM = 2;
+    public final int x, y;
+    private int displayStateCount;
+    private int bombs = 0;
+    private boolean bomb = false;
+    private boolean isShown = false;
 
-
-    private boolean isShown=false;
-    public final int x,y;
-
-    public Block(boolean showQuestion,final int x,final int y, final MineSweeper parent) {
+    public Block(boolean showQuestion, final int x, final int y, final MineSweeper parent) {
 
         if (showQuestion)
-            displayStateCount=3;
+            displayStateCount = 3;
         else
-            displayStateCount=2;
+            displayStateCount = 2;
 
-        this.x=x;
-        this.y=y;
+        this.x = x;
+        this.y = y;
 
         setSize(16, 16);
         setBackground(null);
@@ -51,31 +44,28 @@ public class Block extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(isShown()) {
+                if (isShown()) {
                     e.consume();
                     return;
                 }
 
-                if(e.getButton()==MouseEvent.BUTTON3) {
-                    if(parent.flagTrriger(((displayState+1)%displayStateCount)
-                            ==DISPLAY_STATE_FLAG))
+                if (e.getButton() == MouseEvent.BUTTON3) {
                     changeState();//Right click
-
-                }
-                else  if(displayState==DISPLAY_STATE_NORMAL)
-                    parent.BlockClicked(x,y); //Left click
+                    parent.updateStates();
+                } else if (displayState == DISPLAY_STATE_NORMAL)
+                    parent.BlockClicked(x, y); //Left click
 
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                if(!isShown())
-                    parent.setClicking(true);
+                if (!isShown())
+                    parent.setBlockPressed(true);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                parent.setClicking(false);
+                parent.setBlockPressed(false);
             }
         });
 
@@ -88,9 +78,9 @@ public class Block extends JButton {
         setDisabledIcon(defaultIcon);
     }
 
-    private void changeState(){
+    private void changeState() {
         displayState++;
-        displayState%=displayStateCount;
+        displayState %= displayStateCount;
 
         update();
     }
@@ -98,22 +88,22 @@ public class Block extends JButton {
 
     private void update() {
 
-        if(!isShown) {
-            int displayIcon=0;
+        if (!isShown) {
+            int displayIcon = 0;
             switch (displayState) {
                 case DISPLAY_STATE_NORMAL:
-                    displayIcon=0;
+                    displayIcon = 0;
                     break;
                 case DISPLAY_STATE_FLAG:
-                    displayIcon=1;
+                    displayIcon = 1;
                     break;
                 case DISPLAY_STATE_QUESTION:
-                    displayIcon=5;
+                    displayIcon = 5;
                     break;
             }
             setIcon(GameResource.buttonIcons[displayIcon]);
         } else {
-            if(isBomb()) {
+            if (isBomb()) {
                 setIcon(GameResource.buttonIcons[bombState]);
             } else {
                 setIcon(GameResource.mineCounters[bombs]);
@@ -146,7 +136,7 @@ public class Block extends JButton {
     }
 
     public void setShown() {
-        isShown=true;
+        isShown = true;
         setEnabled(false);
         update();
     }
