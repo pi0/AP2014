@@ -12,6 +12,8 @@ public class GameResource {
     public static final ImageIcon[] mineCounters;
     public static final ImageIcon[] buttonIcons;
     public static final ImageIcon[] smilliIcons;
+    private static BufferedImage sprit;
+    private static String sprit_path = "src\\AP2014\\minesweeper\\sprite100.gif";
 
     static {
 
@@ -50,7 +52,5 @@ public class GameResource {
 
     }
 
-    private static BufferedImage sprit;
-    private static String sprit_path = "src\\AP2014\\minesweeper\\sprite100.gif";
 
 }
