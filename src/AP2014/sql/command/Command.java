@@ -14,7 +14,7 @@ import AP2014.sql.command.token.TokenList;
 
 public class Command {
 
-    private static final String querySplitter = "[\n;]+";
+    private static final String querySplitter = "[\r\n;]+";
     private Resource resource;
     private Database db;
     private Table currentTable;

@@ -1,7 +1,12 @@
 package AP2014.sql;
 
+import AP2014.io.Utils;
 import AP2014.sql.command.Command;
 import AP2014.sql.storage.Database;
+
+import java.io.File;
+import java.io.IOException;
+
 public class SQL {
 
     private Database db;
@@ -24,9 +29,21 @@ public class SQL {
         Command.query(query,db,r);
         return r;
     }
-    
-    public String dumpDB() {
-    	return db.dump();
+
+    public void importFromFile(File f) {
+        try {
+            query(Utils.readAllFile(f));
+        } catch (IOException e) {
+           // e.printStackTrace();
+        }
+    }
+
+    public void exportToFile(File f) {
+        try {
+            Utils.writeAllFile(f,db.dump());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

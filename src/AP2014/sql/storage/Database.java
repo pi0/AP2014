@@ -8,7 +8,7 @@ import AP2014.sql.storage.cell.MetaCell;
 public class Database {
 
     private String name;
-    private Vector<Table> tables;
+    public final Vector<Table> tables;
 
     public Database(String name) {
         tables=new Vector<Table>();

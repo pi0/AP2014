@@ -1,0 +1,8 @@
+# Table : boo
+##
+create table 'boo' ('a' string -1,'name' string -1,'family' string -1,'score' float -1,'age' int -1);
+insert into 'boo' values(salam,pedram,parsa,17.0,15);
+insert into 'boo' values(salam,pedram,parsa,17.0,15);
+insert into 'boo' values(salam,pedram,parsa,17.0,15);
+insert into 'boo' values(salam,pedram,parsa,17.0,15);
+
