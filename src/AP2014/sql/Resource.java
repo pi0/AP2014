@@ -33,4 +33,9 @@ public class Resource {
     public void logInfo(String message) {
         log(message, "INFO");
     }
+
+    @Override
+    public String toString() {
+        return logHolder.toString();
+    }
 }

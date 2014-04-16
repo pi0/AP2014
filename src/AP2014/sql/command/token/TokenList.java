@@ -153,13 +153,15 @@ public class TokenList {
 
     @Override
     public String toString() {
-        StringBuffer s=new StringBuffer();
-        for(TokenItem i:tokens)
-            s.append(i.toString()+"\n");
-        
-        if(s.length()>0)
-            return s.substring(0,s.length()-1);
-        else return "[empty]";
+//        StringBuffer s=new StringBuffer();
+//
+//        for(TokenItem i:tokens)
+//            s.append(i.toString()+"\n");
+//
+//        if(s.length()>0)
+//            return s.substring(0,s.length()-1);
+//        else return "[empty]";
+        return getCurrentToken().toString();
     }
 }
 

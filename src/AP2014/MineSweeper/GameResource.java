@@ -9,8 +9,8 @@ import java.io.File;
 public class GameResource {
 
     public static final BufferedImage[] sevenSegmentDigits;
-    public static final ImageIcon[] mineCounters;
-    public static final ImageIcon[] buttonIcons;
+    public static final BufferedImage[] mineCounters;
+    public static final BufferedImage[] buttonIcons;
     public static final ImageIcon[] smilliIcons;
     private static BufferedImage sprit;
     private static String sprit_path = "src\\AP2014\\minesweeper\\sprite100.gif";
@@ -32,23 +32,20 @@ public class GameResource {
                     sprit.getSubimage(13 * i, 0, 12, 23);
 
         //Load mines
-        mineCounters = new ImageIcon[9];
+        mineCounters = new BufferedImage[9];
         for (int i = 0; i < 9; i++)
-            mineCounters[i] =
-                    new ImageIcon(sprit.getSubimage(16 * i, 23, 16, 16));
+            mineCounters[i] =sprit.getSubimage(16 * i, 23, 16, 16);
 
         //Load buttonIcons
-        buttonIcons = new ImageIcon[8];
+        buttonIcons = new BufferedImage[8];
         for (int i = 0; i < 7; i++)
-            buttonIcons[i] =
-                    new ImageIcon(sprit.getSubimage(16 * i, 40, 16, 16));
+            buttonIcons[i] =sprit.getSubimage(16 * i, 40, 16, 16);
         buttonIcons[7] = mineCounters[0];
 
         //Load smillies
         smilliIcons = new ImageIcon[5];
         for (int i = 0; i < 5; i++)
-            smilliIcons[i] =
-                    new ImageIcon(sprit.getSubimage(1 + 26 * i, 56, 25, 25));
+            smilliIcons[i] = new ImageIcon(sprit.getSubimage(1 + 26 * i, 56, 25, 25));
 
     }
 

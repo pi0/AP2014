@@ -1,7 +1,8 @@
 # Table : boo
 ##
-create table 'boo' ('name' string -1,'family' string -1,'score' float -1,'age' int -1);
-insert into 'boo' values(pedram,parsa,17.0,15);
-insert into 'boo' values(pooya,parsa,20.0,20);
-insert into 'boo' values(gholi,parsa,18.0,20);
-select * from 'boo' where name=a or family=b and (name=c or score=3)
+create table 'boo' (a string,'name' string -1,'family' string -1,'score' float -1,'age' int -1);
+#insert into 'boo' values(salam,pedram,parsa,17.0,15);
+
+update from 'boo' set name="REMOVED" where  ( a=b or a=c ) and a=d or a=f
+
+#(select * from 'oo' where name=a or family=b and (name=c or score=3)

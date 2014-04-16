@@ -62,4 +62,11 @@ public class Record{
     	return sb.toString();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder b=new StringBuilder();
+        for (DataCell c:cells)
+            b.append(c.getName()+" = '"+c.getValue()+"' , ");
+        return b.toString();
+    }
 }

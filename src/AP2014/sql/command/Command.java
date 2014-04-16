@@ -2,6 +2,8 @@ package AP2014.sql.command;
 
 import javafx.util.Pair;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import AP2014.sql.SQL;
 import AP2014.sql.Resource;
@@ -68,7 +70,7 @@ public class Command {
         } else if (list.checkSequence("k", "drop")) {
                 list.next();
                 drop();
-        } else if (list.checkSequence("#"))
+        } else if (list.checkSequence("#") || list.isEndOfList())
             ;//quite!!
         else
             resource.logError("Unknown query : "+list.toString());
@@ -223,7 +225,7 @@ public class Command {
         //Add it to table
         table.addRecord(r);
 
-        resource.logInfo("New record added to table "+ __(table.getName()));
+        resource.logInfo("New record added to table "+ __(table.getName())+"\n"+r.toString());
     }
 
     private void updateFrom() {
@@ -267,9 +269,17 @@ public class Command {
 
         Vector<Record> records=getWhere(table);
         if(records==null)return;
-        for(Record r:records)
+        for(Record r:records) {
+            StringBuilder l=new StringBuilder();
+            l.append("Record updated :\n");
+            l.append(r.toString()+"\nto\n");
             r.update(updates);
+            l.append(r.toString());
 
+            resource.logInfo(l.toString());
+        }
+
+        resource.logInfo("Records updated successfully!");
     }
 
     private void select() {
@@ -331,6 +341,8 @@ public class Command {
         Table t=new Table(table.getName()+"_subTable",params);
         t.addRecords(records);
 
+        resource.logInfo(t.toString());
+
         //Add this table to resource
         resource.getTables().add(t);
     }
@@ -343,6 +355,8 @@ public class Command {
         Vector<Record> records=getWhere(table);
         if(records==null)return;
         table.deleteRecords(records);
+
+        resource.logInfo("Record(s) successfully deleted!");
     }
     
     private void drop() {
@@ -351,6 +365,7 @@ public class Command {
         list.next();
 
         db.drop(table);
+        resource.logInfo("Table "+__(table.getName())+" Successfully droped!");
     }
       
     private Vector<Record> getWhere(Table table) {
@@ -370,49 +385,63 @@ public class Command {
         ConditionNode c=getCondition(list);
         if(c==null)
             resource.logError("Invalid condition");
+        resource.logInfo("Condition parsed : "+c.toString());
         return c;
     }
 
     private ConditionNode getCondition(TokenList l) {
 
-        boolean andSeen=false;
         OperatorNode root=new OperatorNode
                 (OperatorType.OPERATOR_TYPE_OR);
 
         ConditionNode n = readCondition(l);
 
+        boolean andSeen=false;
+        OperatorType ot = null;
+        if (l.checkSequence("k", "or"))
+            ot = OperatorType.OPERATOR_TYPE_OR;
+        else if (l.checkSequence("k", "and"))
+            ot = OperatorType.OPERATOR_TYPE_AND;
+        if (ot == null)
+            return n;
+
+        l.next();
+
+        ArrayList<ConditionNode> andList=new ArrayList<ConditionNode>();
+
+        if(ot==OperatorType.OPERATOR_TYPE_AND) {
+            andSeen = true;
+            andList.add(n);
+        } else {
+            andSeen = false;
+            root.addChild(n);
+        }
+
         while (!l.isEndOfList()) {
 
-            ConditionNode n2= readCondition(l);
+            n= readCondition(l);
 
-            if(andSeen) {
-                OperatorNode and=new OperatorNode
-                        (OperatorType.OPERATOR_TYPE_AND);
-                and.addChild(n);
-                and.addChild(n2);
-                root.addChild(and);
-            } else
-                root.addChild(n2);
-
-            if (l.isEndOfList())
-                break;
-
-            OperatorType ot = null;
-            if (l.checkSequence("k", "or"))
-                ot = OperatorType.OPERATOR_TYPE_OR;
-            else if (l.checkSequence("k", "and"))
-                ot = OperatorType.OPERATOR_TYPE_AND;
-            if (ot == null) {
-                resource.logError("Invalid operator");
-                return null;
-            }
+            andSeen=l.checkSequence("k", "and");
             l.next();
 
-            if(ot==OperatorType.OPERATOR_TYPE_AND)
-                andSeen=true;
-            else
-                andSeen=false;
+            if(!andSeen || l.isEndOfList()) {
+                if(andList.size()>0) {
+                    andList.add(n);
+                    OperatorNode and = new OperatorNode
+                            (OperatorType.OPERATOR_TYPE_AND);
+                    for (ConditionNode aa : andList)
+                        and.addChild(aa);
+                    root.addChild(and);
+                    andList.clear();
+                } else
+                    root.addChild(n);
+            } else
+                andList.add(n);
+
         }
+
+
+
         return root;
     }
 

@@ -37,9 +37,22 @@ public class SevenSegment extends JComponent {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         int v = value;
+        boolean is_ng=false;
+        if(v>999)
+            v=999;
+        if(v<0) {
+            v*=-1;
+            is_ng=true;
+            if(v>99)
+                v=99;
+        }
         for (int i = 2, p = 1; i >= 0; i--, v /= 10) {
             BufferedImage r = GameResource.sevenSegmentDigits[v % 10];
             g2.drawImage(r, i * 15 + 5, 5, 15, 30, this);
+        }
+        if(is_ng){
+            BufferedImage r = GameResource.sevenSegmentDigits[10];
+            g2.drawImage(r, 0 * 15 + 5, 5, 15, 30, this);
         }
     }
 }

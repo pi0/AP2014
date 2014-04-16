@@ -1,8 +1,13 @@
 package AP2014.minesweeper;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
+import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public class Block extends JButton {
@@ -22,8 +27,18 @@ public class Block extends JButton {
     private int bombs = 0;
     private boolean bomb = false;
     private boolean isShown = false;
+    private Component parent;
 
-    public Block(boolean showQuestion, final int x, final int y, final MineSweeper parent) {
+    enum NextActionType {
+        NEXT_ACTION_TYPE_NONE,
+        NEXT_ACTION_TYPE_OPEN,
+        NEXT_ACTION_TYPE_FLAG
+    }
+    private NextActionType nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;
+
+
+
+    public Block(boolean showQuestion, final int x, final int y, final Component parent) {
 
         if (showQuestion)
             displayStateCount = 3;
@@ -36,80 +51,151 @@ public class Block extends JButton {
         setSize(16, 16);
         setBackground(null);
         setBorder(null);
-        setFocusable(false);
 
-        setPressedIcon(GameResource.buttonIcons[7]);
-        update();
+        this.parent=parent;
 
-        addMouseListener(new MouseAdapter() {
+        //   enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+        addFocusListener(new FocusAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (isShown()) {
-                    e.consume();
-                    return;
-                }
-
-                if (e.getButton() == MouseEvent.BUTTON3) {
-                    changeState();//Right click
-                    parent.updateStates();
-                } else if (displayState == DISPLAY_STATE_NORMAL)
-                    parent.BlockClicked(x, y); //Left click
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (!isShown())
-                    parent.setBlockPressed(true);
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                parent.setBlockPressed(false);
+            public void focusLost(FocusEvent e) {
+                nextActionType=NextActionType.NEXT_ACTION_TYPE_NONE;
             }
         });
-
-
     }
 
     @Override
-    public void setIcon(Icon defaultIcon) {
-        super.setIcon(defaultIcon);
-        setDisabledIcon(defaultIcon);
+    protected void processEvent(AWTEvent e) {
+        super.processEvent(e);
+
+        if(e instanceof MouseEvent)
+            onMouseEvent((MouseEvent)e);
+        else if(e instanceof KeyEvent)
+            onKeyEvent((KeyEvent)e);
+        else if(e instanceof BlockEvent)
+            onBlockEvent((BlockEvent)e);
     }
 
-    private void changeState() {
-        displayState++;
-        displayState %= displayStateCount;
-
-        update();
+    private void onBlockEvent(BlockEvent e) {
+        switch (e.getID()) {
+            case BlockEvent.BLOCK_SHOWBLOCK:
+                if(isShown || isFlagged())
+                    return;
+                setShown(true);
+                if (getBombs() != 0)
+                    return;
+                for(Block b:(ArrayList<Block>)e.arg0)
+                    parent.dispatchEvent(BlockEvent.showBlockRequest(b));
+                break;
+        }
     }
 
 
-    private void update() {
+    private void onKeyEvent(KeyEvent e) {
+       if (e.getID() != KeyEvent.KEY_RELEASED)
+            return;
 
-        if (!isShown) {
-            int displayIcon = 0;
-            switch (displayState) {
-                case DISPLAY_STATE_NORMAL:
-                    displayIcon = 0;
-                    break;
-                case DISPLAY_STATE_FLAG:
-                    displayIcon = 1;
-                    break;
-                case DISPLAY_STATE_QUESTION:
-                    displayIcon = 5;
-                    break;
-            }
-            setIcon(GameResource.buttonIcons[displayIcon]);
-        } else {
-            if (isBomb()) {
-                setIcon(GameResource.buttonIcons[bombState]);
-            } else {
-                setIcon(GameResource.mineCounters[bombs]);
-            }
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_SPACE:
+                nextActionType = NextActionType.NEXT_ACTION_TYPE_FLAG;
+                break;
+            case KeyEvent.VK_ENTER:
+                nextActionType = NextActionType.NEXT_ACTION_TYPE_OPEN;
+                break;
+            default:
+                nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;
         }
 
+        doAction();
+        updateUI();
+    }
+
+    private boolean isPressed=false;
+
+    private void onMouseEvent(MouseEvent e) {
+
+        boolean btn1= (e.getModifiersEx() &
+                MouseEvent.BUTTON1_DOWN_MASK)!=0;
+        boolean btn3= (e.getModifiersEx() &
+                MouseEvent.BUTTON3_DOWN_MASK)!=0;
+
+        isPressed=false;
+
+        if(e.getID() == MouseEvent.MOUSE_EXITED) {
+            nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;
+        }if(btn1) {
+            if((isBomb() || bombs!=0)&&!isFlagged())
+                parent.dispatchEvent(BlockEvent.mouseChange(this,true));
+            isPressed = true;
+            nextActionType = NextActionType.NEXT_ACTION_TYPE_OPEN;
+        }else if(btn3) {
+            nextActionType = NextActionType.NEXT_ACTION_TYPE_FLAG;
+        } else {
+            //Mouse is up
+            parent.dispatchEvent(BlockEvent.mouseChange(this,false));
+            doAction();
+        }
+        updateUI();
+    }
+
+    private void doAction() {
+        switch (nextActionType) {
+            case NEXT_ACTION_TYPE_FLAG:
+                //change state
+                displayState++;
+                displayState%=displayStateCount;
+
+                parent.dispatchEvent(BlockEvent.update(this));
+                break;
+            case NEXT_ACTION_TYPE_OPEN:
+                //show
+                if(!isFlagged())
+                    parent.dispatchEvent(BlockEvent.blockClicked(this));
+                break;
+        }
+        nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;
+        requestFocus();
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        BufferedImage i=null;
+
+        if(!isShown) {
+            if (!isPressed) {
+                //Normal state
+                int displayIcon = 0;
+                switch (displayState) {
+                    case DISPLAY_STATE_NORMAL:
+                        displayIcon = 0;
+                        break;
+                    case DISPLAY_STATE_FLAG:
+                        displayIcon = 1;
+                        break;
+                    case DISPLAY_STATE_QUESTION:
+                        displayIcon = 5;
+                        break;
+                }
+                i=GameResource.buttonIcons[displayIcon];
+            }else //Pressed state
+                i=GameResource.buttonIcons[7];
+
+        } else {
+            //Shown state
+            if(!bomb) {
+                //Empty
+                i=GameResource.mineCounters[bombs];
+            } else {
+                //Bomb
+                i=GameResource.buttonIcons[bombState];
+            }
+
+        }
+
+
+        if(i!=null)
+            g.drawImage(i,0,0,this);
     }
 
 
@@ -119,7 +205,7 @@ public class Block extends JButton {
 
     public void setBombs(int bombs) {
         this.bombs = bombs;
-        update();
+        repaint();
     }
 
     public boolean isBomb() {
@@ -128,24 +214,28 @@ public class Block extends JButton {
 
     public void setBomb() {
         bomb = true;
-        update();
+        repaint();
     }
 
     public void setBombState(int bombState) {
         this.bombState = bombState;
     }
 
-    public void setShown() {
-        isShown = true;
-        setEnabled(false);
-        update();
+    public void setShown(boolean shown) {
+        isShown = shown;
+       repaint();
     }
 
     public boolean isShown() {
         return isShown;
     }
 
+    public boolean isFlagged() {
+        return (displayState==DISPLAY_STATE_FLAG);
+    }
+
     public int getDisplayState() {
         return displayState;
     }
+
 }
