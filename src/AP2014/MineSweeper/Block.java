@@ -2,10 +2,7 @@ package AP2014.minesweeper;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -28,6 +25,10 @@ public class Block extends JButton {
     private boolean bomb = false;
     private boolean isShown = false;
     private Component parent;
+
+    private boolean isPressed=false;
+    private boolean doubleClicked =false;
+
 
     enum NextActionType {
         NEXT_ACTION_TYPE_NONE,
@@ -54,13 +55,8 @@ public class Block extends JButton {
 
         this.parent=parent;
 
-        //   enableEvents(AWTEvent.MOUSE_EVENT_MASK);
-        addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusLost(FocusEvent e) {
-                nextActionType=NextActionType.NEXT_ACTION_TYPE_NONE;
-            }
-        });
+        enableEvents(AWTEvent.MOUSE_EVENT_MASK);
+
     }
 
     @Override
@@ -109,8 +105,6 @@ public class Block extends JButton {
         updateUI();
     }
 
-    private boolean isPressed=false;
-
     private void onMouseEvent(MouseEvent e) {
 
         boolean btn1= (e.getModifiersEx() &
@@ -120,19 +114,21 @@ public class Block extends JButton {
 
         isPressed=false;
 
-        if(e.getID() == MouseEvent.MOUSE_EXITED) {
+        if(!contains(e.getPoint())) {
             nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;
-        }if(btn1) {
+            parent.dispatchEvent(BlockEvent.mouseChange(this, false));
+        } else if(btn1) {
             if((isBomb() || bombs!=0)&&!isFlagged())
                 parent.dispatchEvent(BlockEvent.mouseChange(this,true));
             isPressed = true;
+            doubleClicked =e.getClickCount()==2;
             nextActionType = NextActionType.NEXT_ACTION_TYPE_OPEN;
         }else if(btn3) {
             nextActionType = NextActionType.NEXT_ACTION_TYPE_FLAG;
         } else {
             //Mouse is up
-            parent.dispatchEvent(BlockEvent.mouseChange(this,false));
             doAction();
+            parent.dispatchEvent(BlockEvent.mouseChange(this,false));
         }
         updateUI();
     }
@@ -141,15 +137,18 @@ public class Block extends JButton {
         switch (nextActionType) {
             case NEXT_ACTION_TYPE_FLAG:
                 //change state
-                displayState++;
-                displayState%=displayStateCount;
-
-                parent.dispatchEvent(BlockEvent.update(this));
+                if(!isShown()) {
+                    displayState++;
+                    displayState %= displayStateCount;
+                    parent.dispatchEvent(BlockEvent.update(this));
+                }
                 break;
             case NEXT_ACTION_TYPE_OPEN:
                 //show
                 if(!isFlagged())
-                    parent.dispatchEvent(BlockEvent.blockClicked(this));
+                    if(!isShown() || doubleClicked) {
+                        parent.dispatchEvent(BlockEvent.blockClicked(this));
+                    }
                 break;
         }
         nextActionType = NextActionType.NEXT_ACTION_TYPE_NONE;

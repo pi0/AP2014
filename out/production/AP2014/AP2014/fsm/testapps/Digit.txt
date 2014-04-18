@@ -1,5 +1,0 @@
-4,2			\.		[0-9]
-init		dot		digit
-dot			-		fDigit
-*digit		dot		digit
-*fDigit		-		fDigit

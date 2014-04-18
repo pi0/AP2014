@@ -25,4 +25,8 @@ public class FSMState {
     public int getId() {
         return id;
     }
+
+    public String toString() {
+        return (isFinalState?"*":"")+name;
+    }
 }

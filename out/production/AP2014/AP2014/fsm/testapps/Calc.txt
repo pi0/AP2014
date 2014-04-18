@@ -1,0 +1,8 @@
+7,7	[0-9]	\(	\)	[\*\/]	\+	\-	\.
+start	digit	prO	-	-	start	neg	-
+neg	digit	prO	-	-	neg	start	-
+binOp	digit	prO	-	-	-	neg	-
+*digit	digit	-	prC	binOp	binOp	binOp	dot
+dot	digit	-	-	-	-	-	-
+prO	digit	prO	prC	-	start	neg	-
+*prC	-	-	prC	binOp	binOp	binOp	-

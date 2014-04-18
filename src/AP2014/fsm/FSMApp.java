@@ -1,6 +1,5 @@
 package AP2014.fsm;
 
-import AP2014.fsm.testapps.DigitFSM;
 import AP2014.io.Utils;
 
 import java.io.File;
@@ -9,15 +8,23 @@ import java.io.IOException;
 public class FSMApp {
     public static void main(String[] args) {
 
-        String name="Digit";
-
-        System.out.println(("salam".split("(?!^)")).length);
-
+        String name="Calc";
         String basePath="src\\AP2014\\fsm\\testapps\\";
+        String baseClass="AP2014.fsm.testapps.";
 
-        //new FSMApp().run(basePath+name+".txt",basePath+name);
+        new FSMApp().run(basePath+name+".txt",
+                baseClass+name, strToStrArr("4*2+3"));
     }
 
+    private static String[] strToStrArr(String s) {
+        return charArrToStrArr(s.toCharArray());
+    }
+    private static String[] charArrToStrArr(char[] ca) {
+        String[] sa=new String[ca.length];
+        for(int i=0;i<ca.length;i++)
+            sa[i]=ca[i]+"";
+        return sa;
+    }
 
 
     private void run(String tablePath,String className,String[] input) {
@@ -35,7 +42,7 @@ public class FSMApp {
             return;
         }
 
-        Object c=null;
+        Class c=null;
         try {
             c=Class.forName(className);
         } catch (ClassNotFoundException e) {
@@ -43,7 +50,16 @@ public class FSMApp {
             return;
         }
 
-        FSM fsm=new FSM(c,tableData);
+        Object cInstance=null;
+        try {
+           cInstance=c.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        FSM fsm=new FSM(cInstance,tableData);
         boolean accpted=fsm.run(input);
         if(accpted)
             System.out.println("State machine accepted this input");

@@ -30,49 +30,48 @@ public class FSM {
             states[s] = new FSMState(cols[0], s);
         }
 
+        int err_num=-1;
         for (int s = 0; s < states.length; s++) {
             String[] cols = rows[s + 1].split(splitterRegex);
             for (int e = 0; e < events.length; e++) {
                 FSMState matchedState = findState(cols[e + 1]);
-                int matchedCode = matchedState != null ? matchedState.getId() : -1;
+                int matchedCode = matchedState != null ? matchedState.getId() : err_num--;
                 transmitions[e][s] = matchedCode;
             }
 
         }
     }
 
+    public boolean run(String[] inputs) {
 
-
-    public boolean run(String[] input) {
         FSMState currentState = states[0];
+        FSMState lastState=currentState;
+        String lastInput="";
 
-        for (int c=0;c<=input.length;c++) {
-            String i=input[c<input.length?c:input.length-1];
-            int trans=-1;
-            if(c<input.length) {
-                FSMEvent e = findEvent(i);
-            if (e != null )
-                trans=transmitions[e.getCode()][currentState.getId()];
-            }
+        for(String input:inputs) {
+            FSMEvent e = findEvent(input);
+            int trans=transmitions[e.getCode()][currentState.getId()];
 
-            if(trans>0) {
+            if(trans>=0) {
+                lastState=currentState;
                 currentState = states[trans];
-                invokeAction("s_" + currentState.getName(), i);
-            }
-            else {
+                invokeAction(currentState.getName(), lastState.getName(),input);
+            } else {
                 //It's end of the line , bro!
-                if(currentState.isFinalState()) {
-                    invokeAction("final_" + currentState.getName(), i);
-                    invokeAction("final_", currentState.getName());
-                    return true;
-                } else {
-                    invokeAction("error_" + currentState.getName(), i);
-                    invokeAction("error", currentState.getName());
-                    return false;
-                }
+                lastInput=input;
+                break;
             }
         }
-        return false;//Wont happen !!
+
+        boolean accepted=false;
+        if(currentState.isFinalState()) {
+            invokeAction("success", currentState.getName());
+            accepted=true;
+        } else {
+            invokeAction("error", currentState.getName(),lastInput);
+            accepted=false;
+        }
+        return accepted;
     }
 
     private FSMState findState(String name) {
@@ -90,19 +89,16 @@ public class FSM {
     }
 
 
-    private void invokeAction(String name,String param) {
-        boolean s=false;
+    private void invokeAction(String name,Object... params) {
         try {
-            Method m = bindedObject.getClass().getMethod(name,String.class);
-            s=true;
-            m.invoke(bindedObject,param);
-        } catch (Exception e) {}
-        if(!s) try {
-            Method m = bindedObject.getClass().getMethod(name);
-            m.invoke(bindedObject);
-        } catch (Exception e) {}
+            Class[] classes=new Class[params.length];
+            for(int i=0;i<params.length;i++)
+                classes[i]=params[i].getClass();
+            Method m = bindedObject.getClass().getMethod(name,classes);
+            m.invoke(bindedObject,params);
+        } catch (Exception e) {
+            System.err.println("Error on invoking "+name);}
     }
-
 
 
 }

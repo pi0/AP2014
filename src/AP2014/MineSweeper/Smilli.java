@@ -1,6 +1,8 @@
 package AP2014.minesweeper;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class Smilli extends JButton {
 
@@ -14,7 +16,6 @@ public class Smilli extends JButton {
         setPressedIcon(GameResource.smilliIcons[1]);
 
         setIcon(0);
-
     }
 
     public void setIcon(int i) {
