@@ -50,7 +50,11 @@ public class FSM {
 
         for(String input:inputs) {
             FSMEvent e = findEvent(input);
-            int trans=transmitions[e.getCode()][currentState.getId()];
+            int trans;
+            if(e!=null && e.getCode()>=0)
+                trans=transmitions[e.getCode()][currentState.getId()];
+            else
+                trans=-1;
 
             if(trans>=0) {
                 lastState=currentState;

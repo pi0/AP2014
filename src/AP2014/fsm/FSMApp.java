@@ -13,7 +13,7 @@ public class FSMApp {
         String baseClass="AP2014.fsm.testapps.";
 
         new FSMApp().run(basePath+name+".txt",
-                baseClass+name, strToStrArr("4*2+3"));
+                baseClass+name, strToStrArr("4*2+3*4boo"));
     }
 
     private static String[] strToStrArr(String s) {
