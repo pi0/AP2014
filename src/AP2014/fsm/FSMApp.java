@@ -7,13 +7,16 @@ import java.io.IOException;
 
 public class FSMApp {
     public static void main(String[] args) {
+        //runByName("Calc","4*2+3*4boo");
 
-        String name="Calc";
+    }
+
+    private static void runByName(String name,String input) {
         String basePath="src\\AP2014\\fsm\\testapps\\";
         String baseClass="AP2014.fsm.testapps.";
 
         new FSMApp().run(basePath+name+".txt",
-                baseClass+name, strToStrArr("4*2+3*4boo"));
+                baseClass+name, strToStrArr(input));
     }
 
     private static String[] strToStrArr(String s) {

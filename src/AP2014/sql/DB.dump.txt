@@ -1,7 +1,12 @@
-# Table : boo
-##
-create table 'boo' ('a' string -1,'name' string -1,'family' string -1,'score' float -1,'age' int -1);
-insert into 'boo' values(salam,pedram,parsa,17.0,16);
-insert into 'boo' values(salam,pooya,parsa,17.0,15);
-insert into 'boo' values(salam,amirhossein,parsa,17.0,16);
-
+create table students ( name string , family string , id int , score float , status string )
+insert into students parameter ( name , family , id , score , status ) values ( ali , irani , 45 , 20 , passed )
+insert into students parameter ( name , family , id , score , status ) values ( pooya , parsa , 48 , 15.6 , passed )
+insert into students parameter ( name , family , id , score , status ) values ( masoud , bonabi , 12 , 17.3 , passed )
+insert into students parameter ( name , family , id , score , status ) values ( fellan , bahman , 1 , 9.99 , failed )
+update from students set status = pending
+update from students set status = special where id = 12
+select * from students
+select * from students where score > 15
+#delete from students where name = pooya
+#delete from students
+#drop students
