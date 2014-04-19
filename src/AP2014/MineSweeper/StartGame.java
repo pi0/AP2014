@@ -83,13 +83,13 @@ public class StartGame extends JDialog {
         lblMines.setLocation(210, 110);
         c.add(lblMines);
 
-        fRows = new NumberField(25, 3, 50, lblRows, this);
+        fRows = new NumberField(20, 3, 50, lblRows, this);
         fRows.setSize(60, 20);
         fRows.setLocation(260, 30);
         c.add(fRows);
         lblRows.setLabelFor(fRows);
 
-        fCols = new NumberField(25, 3, 50, lblCols, this);
+        fCols = new NumberField(30, 3, 50, lblCols, this);
         fCols.setSize(60, 20);
         fCols.setLocation(260, 70);
         c.add(fCols);
@@ -180,9 +180,14 @@ public class StartGame extends JDialog {
 
         if (e.getID() == NumberField.OnEditEventID) {
             //Validate
+            if(rows()>20)
+                fRows.setText(20+"");
+            if(cols()>30)
+                fCols.setText(30+"");
             int m = (int) (.4 * (rows() * cols()));
             if (mines() > m)
                 fMines.setText(m + "");
+
         }
 
 

@@ -1,13 +1,12 @@
 package AP2014.fsm;
 
 import AP2014.io.Utils;
-
 import java.io.File;
 import java.io.IOException;
 
 public class FSMApp {
     public static void main(String[] args) {
-        //runByName("Calc","4*2+3*4boo");
+        runByName("Calc","(--3+--3)");
 
     }
 

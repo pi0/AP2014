@@ -75,6 +75,10 @@ public class Calc {
         } else
             err=true;
 
+        System.out.print("Postfix : ");
+        for(Object s:postfix)
+            System.out.print(s+" ");
+        System.out.println();
 
         if(!err)
             System.out.println("Result : " + res);
@@ -98,7 +102,9 @@ public class Calc {
             } else {
                 if(result.size()<2)
                     throw new Exception();
-                result.push(applyOperator((Character)o,result.pop(),result.pop()));
+                double b=result.pop();
+                double a=result.pop();
+                result.push(applyOperator((Character)o,a,b));
             }
         }
         if(result.size()!=1)
