@@ -1,13 +1,21 @@
 package AP2014.fsm;
 
+import AP2014.fsm.testapps.Mod;
 import AP2014.io.Utils;
 import java.io.File;
 import java.io.IOException;
 
 public class FSMApp {
     public static void main(String[] args) {
-        runByName("Calc","(--3+--3)");
+//      runByName("Calc","(--3+--3)");
+        runMod("1000111101", 5);//573%5 = 4
 
+    }
+
+    private static void runMod(String input, int devBy) {
+        Mod m = new Mod();
+        FSM f = new FSM(m, Mod.generateTable(devBy));
+        f.run(strToStrArr(input));
     }
 
     private static void runByName(String name,String input) {
