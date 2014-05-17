@@ -1,5 +1,13 @@
 package AP2014.web;
 
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebEvent;
+import javafx.scene.web.WebView;
+
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -23,6 +31,7 @@ public class WebBrowser extends JFrame {
     JButton bback;
     JButton bnext;
     JButton br;
+    WebEngine engine;
 
 
     HistoryManager history;
@@ -37,10 +46,7 @@ public class WebBrowser extends JFrame {
     }
 
     public static void main(String[] args) throws Exception {
-
-//       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         UIManager.setLookAndFeel(new NimbusLookAndFeel());
-
 
         new WebBrowser().setVisible(true);
     }
@@ -104,8 +110,6 @@ public class WebBrowser extends JFrame {
                 go(history.getLast());
             }
         });
-        bback.setEnabled(false);
-        bnext.setEnabled(false);
 
         navBar.add(bback);
         navBar.add(bnext);
@@ -144,7 +148,34 @@ public class WebBrowser extends JFrame {
         //Browser Pane
         browserPane = new JEditorPane("text/html", "<h1>Hello!</h1>");
         browserPane.setEditable(false);
-        JScrollPane browserContainer = new JScrollPane(browserPane);
+        // JScrollPane browserContainer = new JScrollPane(browserPane);
+
+        final JFXPanel browserContainer = new JFXPanel();
+        Platform.runLater(new Runnable() {
+            public void run() {
+                WebView browser = new WebView();
+                engine = browser.getEngine();
+                browserContainer.setScene(new Scene(new Group(browser),
+                        javafx.scene.paint.Color.RED));
+
+                engine.setOnStatusChanged(new javafx.event.EventHandler<WebEvent<String>>() {
+                    @Override
+                    public void handle(final WebEvent<String> event) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                statusLabel.setText(event.getData());
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+
+
+
+
 
         browserPane.addHyperlinkListener(new HyperlinkListener() {
             @Override
@@ -197,36 +228,35 @@ public class WebBrowser extends JFrame {
     }
 
     private void goBack() {
-        go(history.goBack());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                engine.getHistory().go(-1);
+            }
+        });
+
     }
 
     private void goNext() {
-        go(history.goNext());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                engine.getHistory().go(+1);
+            }
+        });
+
     }
 
     private synchronized void go(final URL addr) {
 
-        if (addr == null)
+        if (addr == null || engine == null)
             return;
-
-        history.go(addr);
-
-        bback.setEnabled(history.hasBack());
-        bnext.setEnabled(history.hasNext());
-
-
-        statusLabel.setText("Loading " + addr);
-
-        new Thread(new Runnable() {
+        Platform.runLater(new Runnable() {
+            @Override
             public void run() {
-                String s = Utils.readAllPage(addr);
-                if (s == null)
-                    s = "<h1>Error!</h1>";
-                browserPane.setText(s);
-                statusLabel.setText("Ready!");
+                engine.load(addr.toString());
             }
-        }).start();
-
+        });
     }
 
 }
